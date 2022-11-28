@@ -20,6 +20,7 @@ public class LogoutServlet extends HttpServlet {
 		// TODO Auto-generated method stub
 		HttpSession session = request.getSession();
 		session.invalidate();
+		
 		response.sendRedirect("login.jsp");
 	}
 

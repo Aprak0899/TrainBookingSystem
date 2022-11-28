@@ -33,6 +33,8 @@
 	    <artifactId>bootstrap</artifactId>
 	    <version>5.0.0</version>
 	</dependency>
+	
+	<!-- https://mvnrepository.com/artifact/javax.servlet.jsp.jstl/jstl -->
 
   </dependencies>
   <build>

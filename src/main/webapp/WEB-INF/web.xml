@@ -59,6 +59,12 @@
   	<description></description>
   	<servlet-class>project.BookTicketServlet</servlet-class>
   </servlet>
+  <servlet>
+  	<servlet-name>ProfileDetails</servlet-name>
+  	<display-name>ProfileDetails</display-name>
+  	<description></description>
+  	<servlet-class>project.ProfileDetails</servlet-class>
+  </servlet>
 
   <servlet-mapping>
   	<servlet-name>SignupServlet</servlet-name>
@@ -96,11 +102,15 @@
   	<servlet-name>PNRServlet</servlet-name>
   	<url-pattern>/pnr</url-pattern>
   </servlet-mapping>
-  
+  <servlet-mapping>
+  	<servlet-name>BookingHistory</servlet-name>
+  	<url-pattern>/</url-pattern>
+  </servlet-mapping>
   <servlet-mapping>
   	<servlet-name>BookingHistory</servlet-name>
   	<url-pattern>/BookingHistory</url-pattern>
   </servlet-mapping>
+  
   
   <servlet-mapping>
   	<servlet-name>LoginServlet</servlet-name>
@@ -126,5 +136,13 @@
   <servlet-mapping>
   	<servlet-name>BookTicketServlet</servlet-name>
   	<url-pattern>/bookTicket</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ProfileDetails</servlet-name>
+  	<url-pattern>/ProfileDetails</url-pattern>
+  </servlet-mapping>
+  <servlet-mapping>
+  	<servlet-name>ProfileDetails</servlet-name>
+  	<url-pattern>/profile</url-pattern>
   </servlet-mapping>
 </web-app>

@@ -92,7 +92,15 @@
                   data-bs-target="#reg-modal"
                   >Loign</a
                 >
+                
               </li>
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="bookingHistory.jsp"
+                  
+                  >Booking history</a
+                >
               <li class="nav-item">
                 <a class="nav-link" href="logout">Log Out</a>
               </li>
@@ -131,20 +139,7 @@
                 Book Tickets
               </button>
             </li>
-            <li class="nav-item" role="presentation">
-              <button
-                class="nav-link"
-                id="pills-profile-tab"
-                data-bs-toggle="pill"
-                data-bs-target="#pills-profile"
-                type="button"
-                role="tab"
-                aria-controls="pills-profile"
-                aria-selected="false"
-              >
-                PNR Status
-              </button>
-            </li>
+            
           </ul>
           <div class="tab-content" id="pills-tabContent">
             <div
@@ -172,14 +167,7 @@
                         <button type="submit" >Book Tickets </button>
                     </form>
             </div>
-            <div
-              class="tab-pane fade"
-              id="pills-profile"
-              role="tabpanel"
-              aria-labelledby="pills-profile-tab"
-            >
-              pnr
-            </div>
+            
             <!-- </div> -->
           </div>
         </div>
@@ -191,6 +179,7 @@
           style="background-color: white; opacity: 0.7"
         >
         <%
+        if(td!=null){
         for(int i=0;i<td.size();i++){
         	
         %>
@@ -202,7 +191,7 @@
                 data-bs-toggle="modal"
                 data-bs-target="#reg-modal" >Book Now </button>
           </div>
-          <% } %>
+          <% }} %>
         </div>
       </div>
     </div>
@@ -250,7 +239,74 @@
       </div>
     <!-- contact form -->
     <!-- form-control, form-label, form-select, input-group, input-group-text -->
-
+	
+	
+	<!-- profile -->
+	
+	<section class="bg-light">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 mb-4 mb-sm-5">
+                <div class="card card-style1 border-0">
+                    <div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7">
+                        <div class="row align-items-center">
+                            <div class="col-lg-6 mb-4 mb-lg-0">
+                            <% if (new String((String)session.getAttribute("gender")).matches("F")){System.out.println("Female"); %>
+                            	                  
+                                <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="..." />
+                           <%  }
+                            else if (new String((String)session.getAttribute("gender")).matches("M")){
+                            	                   %>
+                                <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="..." />
+                           <%  }
+                            else{
+                            	     System.out.println("other"+session.getAttribute("gender"));    %>          
+                                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="..." />
+                           <%  }
+                            %>
+                            </div>
+                            <div class="col-lg-6 px-xl-10">
+                                <div class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded"
+                                    style="width: 100%;">
+                                    <h3 class="h2 text-white mb-0 d-flex justify-content-center"><%=session.getAttribute("name") %>
+                                    </h3>
+                                    <!-- <span class="text-primary">Coach</span> -->
+                                </div>
+                                <ul class="list-unstyled mb-1-9">
+                                    <!--  <li class="mb-2 mb-xl-3 display-28">
+                                        <span class="display-26 text-secondary me-2 font-weight-600">Position:</span>
+                                        Coach
+                                    </li> -->
+                                    <li class="mb-2 mb-xl-3 display-28">
+                                        <span class="display-26 text-secondary me-2 font-weight-600">Full Name:</span>
+                                        <%=session.getAttribute("name") %> <%=session.getAttribute("lname") %>
+                                    </li>
+                                    <li class="mb-2 mb-xl-3 display-28">
+                                        <span class="display-26 text-secondary me-2 font-weight-600">Id:</span>
+                                        <%=session.getAttribute("id") %>
+                                    </li>
+                                    <li class="mb-2 mb-xl-3 display-28">
+                                        <span class="display-26 text-secondary me-2 font-weight-600">Email:</span>
+                                        <%=session.getAttribute("email") %>
+                                    </li>
+                                    
+                                    <li class="display-28">
+                                        <span class="display-26 text-secondary me-2 font-weight-600">Phone:</span>
+                                       <%=session.getAttribute("mobile") %>
+                                    </li>
+                                </ul>
+                                <button class="btn btn-primary" routerLink="/dashboard">
+                                    go back
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+	
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

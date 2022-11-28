@@ -48,29 +48,7 @@
               <span class="navbar-toggler-icon"></span>
             </button>
   
-            <!-- navbar links -->
-            <div
-              class="collapse navbar-collapse justify-content-end align-center"
-              id="main-nav"
-            >
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link" href="#topics" data-bs-toggle="modal"
-                data-bs-target="#reg-modal">Sign Up</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#reviews" data-bs-toggle="modal"
-                data-bs-target="#reg-modal">Loign</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="logout">Log Out</a>
-                </li>
-  
-                <li class="nav-item ms-2 d-none d-md-inline">
-                  <a class="btn btn-secondary"><%=session.getAttribute("name") %></a>
-                </li>
-              </ul>
-            </div>
+            
           </div>
         </nav>
       
@@ -110,7 +88,25 @@
                         <button type="submit" >Book Tickets </button>
                     </form>
                 </div>
-                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">pnr</div>
+                <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                
+                pnr
+                
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                    <form method="post" action="pnr">
+                        <ul>
+                            <b class="fsize"> 
+                            pnr no. 
+                            <input id="pnr" name="pnr" type="text" placeholder="Enter PNR" required="required" > 
+                            </b>
+                            <button type="submit" >Submit </button>
+                           
+                        </ul>
+                         
+                        
+                    </form>
+                </div>
+                </div>
               <!-- </div> -->
             </div>
           </div>

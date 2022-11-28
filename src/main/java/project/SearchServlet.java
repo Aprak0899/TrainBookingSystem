@@ -43,7 +43,6 @@ public class SearchServlet extends HttpServlet {
 		String travelClass=request.getParameter("class");
 		
 		RequestDispatcher dispatcher = null;
-		HttpSession session= request.getSession();
 		System.out.println("src = "+src+" dest = "+dest+" date = "+date+" class = "+travelClass);
 				
 		//--------------------------------------------serverSide validation------------------------------

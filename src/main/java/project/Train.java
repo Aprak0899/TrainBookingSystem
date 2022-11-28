@@ -5,6 +5,9 @@ public class Train {
 	private String tArrival;
 	private String tDeparture;
 	private int tDuration;
+	private int tAvailSeat;
+	private int tACSeat;
+	private int tNACSeat;
 	//setter
 	public void setId(int Id) {
 		this.tId=Id;
@@ -21,7 +24,27 @@ public class Train {
 	public void setDuration(int d) {
 		this.tDuration=d;
 	}
+	public void setAvailSeat(int s) {
+		this.tAvailSeat=s;
+	}
+	public void setACSeat(int s) {
+		this.tACSeat=s;
+	}
+	public void setNACSeat(int s) {
+		this.tNACSeat=s;
+	}
+	
+	
 	//getter
+	public int getAvailSeat() {
+		return this.tAvailSeat;
+	}
+	public int getACSeat() {
+		return this.tACSeat;
+	}
+	public int getNACSeat() {
+		return this.tNACSeat;
+	}
 	public int getId() {
 		return tId;
 	}

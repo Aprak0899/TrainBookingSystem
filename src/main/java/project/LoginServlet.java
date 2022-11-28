@@ -59,6 +59,11 @@ public class LoginServlet extends HttpServlet {
 			ResultSet rs = pstmt.executeQuery();
 			if(rs.next()) {
 				session.setAttribute("name", rs.getString("FirstName"));
+				session.setAttribute("lname", rs.getString("LastName"));
+				session.setAttribute("id", rs.getInt("User_id"));
+				session.setAttribute("mobile", rs.getString("Mobile"));
+				session.setAttribute("email", rs.getString("Email"));
+				session.setAttribute("gender", rs.getString("Gender"));
 				dispatcher=request.getRequestDispatcher("index.jsp");
 			}else {
 				request.setAttribute("status", "failed");
