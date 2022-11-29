@@ -44,7 +44,7 @@ public class BookingHistory extends HttpServlet {
 		return connection;
 	}
        
-	//-------------connection------------------
+	//-------------select all ticktets booked by logged in user ------------------
 	
 	private ArrayList<Ticket> selectAllUsers(int u_id) {
 
@@ -59,11 +59,11 @@ public class BookingHistory extends HttpServlet {
 			//System.out.println(preparedStatement);
 			// Step 3: Execute the query or update query
 			ResultSet rs = preparedStatement.executeQuery();
-			System.out.println("sql has nth = "+u_id);
-			System.out.println("sql has nth");
+			//System.out.println("sql has nth = "+u_id);
+			//System.out.println("sql has nth");
 			// Step 4: Process the ResultSet object.
 			while (rs.next()) {
-				System.out.println("sql has smth");
+				//System.out.println("sql has smth");
 				Ticket t= new Ticket();
 				t.setp_Id(rs.getInt(13));
 				t.setu_Id(rs.getInt(14));
@@ -82,7 +82,6 @@ public class BookingHistory extends HttpServlet {
 				t.setACSeat(rs.getInt(8));
 				t.setNACSeat(rs.getInt(7));
 				
-				
 				ticketDetails.add(t);
 			}
 		} catch (SQLException e) {
@@ -90,7 +89,9 @@ public class BookingHistory extends HttpServlet {
 		}
 		return ticketDetails;
 	}
-	//cancel ticket by updating passenger status to 0
+	
+	//==================cancel ticket by updating passenger status to 0======================
+	
 	public boolean cancelTicket(Ticket t) throws SQLException {
 		boolean rowUpdated;
 		try (Connection connection = getConnection();
@@ -104,15 +105,17 @@ public class BookingHistory extends HttpServlet {
 		
 		return rowUpdated;
 	}
-	//update train
+	
+	//===================revert back train's seat availability ======================================
+	
 	public boolean updateTrain(Ticket t) throws SQLException {
 
 		boolean rowUpdated;
 		
 		//true for Ac and false for NAC
-		System.out.println("seat = "+t.getpSeatType());
+		//System.out.println("seat = "+t.getpSeatType());
 		boolean seatType=t.getpSeatType().matches("A")?true:false;
-		System.out.println("total seat = "+t.getAvailSeat()+" ac = "+t.getACSeat()+" NAC = "+t.getNACSeat()+" Is AC =  "+seatType);
+		//System.out.println("total seat = "+t.getAvailSeat()+" ac = "+t.getACSeat()+" NAC = "+t.getNACSeat()+" Is AC =  "+seatType);
 		try (Connection connection = getConnection();
 				PreparedStatement statement = connection.prepareStatement("update train set Availability_of_seats = ?, General_seats = ?, AC_seats= ? where Train_no = ?;");) 
 		{
@@ -136,6 +139,7 @@ public class BookingHistory extends HttpServlet {
 		return rowUpdated;
 	}
 	
+	//====================== call get user conn here =======================
 	
 	private void listUser(HttpServletRequest request, HttpServletResponse response)
 			throws SQLException, IOException, ServletException {
@@ -149,6 +153,8 @@ public class BookingHistory extends HttpServlet {
 		RequestDispatcher dispatcher = request.getRequestDispatcher("bookingHistory.jsp");
 		dispatcher.forward(request, response);
 	}
+	
+	//======================  cancel ticket here =======================
 	
 	private void updateUser(HttpServletRequest request, HttpServletResponse response) 
 			throws SQLException, IOException {
@@ -167,21 +173,30 @@ public class BookingHistory extends HttpServlet {
 		// TODO Auto-generated method stub
 		String action = request.getServletPath();
 		System.out.println("works = "+action);
+		//String path = "/bookingHistory.jsp";
+		//action=path.concat(action);
+		System.out.println("action = "+action);
 		try {
 			switch (action) {
 			case "/update":
 				System.out.println("works");
 				updateUser(request, response);
 				break;
-			default:
+			case "/list":
 				System.out.println("works for list");
 				listUser(request, response);
+				break;	
+			default:
+//				System.out.println("works for list");
+//				listUser(request, response);
+				RequestDispatcher dispatcher = null;
+				dispatcher=request.getRequestDispatcher("bookingHistory.jsp");
+				dispatcher.forward(request, response);
 				break;
 			}
 		} catch (SQLException ex) {
 			throw new ServletException(ex);
 		}
-		
 	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

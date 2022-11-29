@@ -97,7 +97,7 @@
               <li class="nav-item">
                 <a
                   class="nav-link"
-                  href="bookingHistory.jsp"
+                  href="BookingHistory"
                   
                   >Booking history</a
                 >
