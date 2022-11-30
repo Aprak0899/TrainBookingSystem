@@ -102,11 +102,11 @@
   	<servlet-name>PNRServlet</servlet-name>
   	<url-pattern>/pnr</url-pattern>
   </servlet-mapping>
-  
   <servlet-mapping>
   	<servlet-name>BookingHistory</servlet-name>
   	<url-pattern>/</url-pattern>
   </servlet-mapping>
+
   
   <servlet-mapping>
   	<servlet-name>BookingHistory</servlet-name>

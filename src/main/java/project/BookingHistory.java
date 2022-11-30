@@ -1,6 +1,7 @@
 package project;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -171,11 +172,12 @@ public class BookingHistory extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
 		String action = request.getServletPath();
 		System.out.println("works = "+action);
-		//String path = "/bookingHistory.jsp";
-		//action=path.concat(action);
 		System.out.println("action = "+action);
+
+		System.out.println("not null");
 		try {
 			switch (action) {
 			case "/update":
@@ -197,6 +199,7 @@ public class BookingHistory extends HttpServlet {
 		} catch (SQLException ex) {
 			throw new ServletException(ex);
 		}
+		
 	}
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
