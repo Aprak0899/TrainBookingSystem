@@ -181,15 +181,28 @@ public class BookingHistory extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		//entry from booking
 		this.val = request.getParameter("bh");
+		
 		if(request.getAttribute("bh")!=null) {
+			System.out.println("if get attri != null set val = bh");
 			this.val=(String) request.getAttribute("bh");
+		}else {
+			//cmt
+			System.out.println("if get attri == null and coming from booking.jsp set val = "+this.val);
 		}
+		
+		
 		int id=-1;
 		if(request.getParameter("id")!=null) {
-			
-		id = Integer.parseInt(request.getParameter("id"));
+			System.out.println("if getid param != null set id = "+request.getParameter("id"));
+			id = Integer.parseInt(request.getParameter("id"));
+		}else {
+			System.out.println("no update");
 		}
+		
+		
 		String action = request.getServletPath();
 		if(this.val!=null) {
 			if(val.matches("bh")) {

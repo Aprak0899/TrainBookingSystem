@@ -67,7 +67,13 @@
 							<td>
 								&nbsp;&nbsp;&nbsp;&nbsp; 
 								<% if(tl.get(i).getStatus()!=0) {%>
-								<a href="update?id=<%= i %> ">Cancel ticket</a>
+								<form method="get" action="BookingHistory?id=">
+				              		<div class="form-group form-button">
+				              		<input type="hidden" name="id" id="signin" class="form-submit" value="<%= i %>" />
+									<input type="submit" name="tag" id="signin" class="form-submit" value="cancel ticket" />
+									</div>
+              					</form>
+								
 								<%}else{
 									%>
 									Expired

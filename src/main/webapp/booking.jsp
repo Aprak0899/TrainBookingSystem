@@ -154,10 +154,12 @@ input[type=number]::-webkit-outer-spin-button {
                 
               </li>
               <li class="nav-item">
-              <form method="get" action="bookingHistory">
+              <form method="get" action="BookingHistory">
               		<div class="form-group form-button">
-								<input type="submit" name="bh" id="signin"
+              		<input type="hidden" name="bh" id="signin"
 									class="form-submit" value="bh" />
+								<input type="submit" name="bha" id="signin"
+									class="form-submit" value="BookingHistory" />
 							</div>
               </form>
                 
