@@ -28,6 +28,65 @@
         background-image: url("assets/home.jpg");
         height: 100vh;
       }
+      #f1 {
+  width: 300px;
+  margin: 0 auto;
+  text-align: center;
+  padding-top: 50px;
+}
+
+.value-button {
+  display: inline-block;
+  border: 1px solid #ddd;
+  margin: 0px;
+  width: 40px;
+  height: 20px;
+  text-align: center;
+  vertical-align: middle;
+  padding: 11px 0;
+  background: #eee;
+  -webkit-touch-callout: none;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.value-button:hover {
+  cursor: pointer;
+}
+
+#f1 #decrease {
+  margin-right: -4px;
+  border-radius: 8px 0 0 8px;
+}
+
+#f1 #increase {
+  margin-left: -4px;
+  border-radius: 0 8px 8px 0;
+}
+
+#f1 #input-wrap {
+  margin: 0px;
+  padding: 0px;
+}
+
+input#number {
+  text-align: center;
+  border: none;
+  border-top: 1px solid #ddd;
+  border-bottom: 1px solid #ddd;
+  margin: 0px;
+  width: 40px;
+  height: 40px;
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
     </style>
 </head>
 <body>
@@ -184,13 +243,23 @@
         	
         %>
           <div>
+           	<p >train number: <%=  td.get(i).getId() %> </p>
             <p>train name: <%=  td.get(i).getName()%> </p>
             <p>Arrival time <%=  td.get(i).getArrival() %></p>
             
-            <button type="submit" class="btn btn-primary"
+            <select id="c<%=i %>" name="class">
+                      
+	           <option value="AC">AC</option>
+	           <option value="Sleeper">Sleeper</option> 
+           </select>
+            <button type="submit" class="btn btn-primary bn"
                 data-bs-toggle="modal"
-                data-bs-target="#reg-modal" >Book Now </button>
+                data-bs-target="#reg-modal" id="<%=i%>" name="<%= td.get(i).getId() %>" 
+                
+                >Book Now
+             </button>
           </div>
+          
           <% }} %>
         </div>
       </div>
@@ -217,27 +286,26 @@
             </div>
             <div class="modal-body">
               <label for="modal-email" class="form-label"
-                >Your Name:</label>
-              <input
-                type="text"
-                class="form-control"
-                id="modal-email"
-                placeholder="e.g. aditya"
-              />
-              <label for="modal-email" class="form-label">Your Gender:</label>
-                <select name="gender" id="gender">
-								<option value="M" selected>Male</option>
-								<option value="F">Female</option>
-								<option value="O">other</option>
-							</select>
+                >select total number of passengers:</label>
+              <form id="f1" method="get" action="bookTicket">
+              <input type="text" name = "tid" id="tid" value="">
+              <input type="text" name = "tno" id="tno" value="">
+              <input type="text" name = "c" id="c" value="">
+  <div class="value-button" id="decrease" onclick="decreaseValue()" value="Decrease Value">-</div>
+  <input type="number" name = "pno" id="number" value="0" />
+  <div class="value-button" id="increase" onclick="increaseValue()" value="Increase Value">+</div>
+  <div class="modal-footer">
+              <button type="submit" class="btn btn-primary"> Submit</button>
             </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary">Submit</button>
+</form>
             </div>
+            
           </div>
         </div>
       </div>
     <!-- contact form -->
+    
+    
     <!-- form-control, form-label, form-select, input-group, input-group-text -->
 	
 	
@@ -318,6 +386,61 @@
       tooltips.forEach((t) => {
         new bootstrap.Tooltip(t);
       });
+      
+      function increaseValue() {
+    	  var value = parseInt(document.getElementById('number').value, 10);
+    	  value = isNaN(value) ? 0 : value;
+    	  value++;
+    	  document.getElementById('number').value = value;
+    	}
+
+    	function decreaseValue() {
+    	  var value = parseInt(document.getElementById('number').value, 10);
+    	  value = isNaN(value) ? 0 : value;
+    	  value < 1 ? value = 1 : '';
+    	  value--;
+    	  document.getElementById('number').value = value;
+    	}
+    	//
+    	
+        var num = document.getElementsByClassName("bn");
+    	var selectedId;
+    	var tno;
+    	var classId;
+		for(var i=0;i<num.length;i++){
+			num[i].addEventListener('click',(b)=>{ 
+				
+				//get id of the selected button
+				selectedId=b.target.id;
+				//get id of the gender dropdown
+				classId="c"+selectedId;
+				
+				//once you have gender dropdown id => then get value for that genderdropdown
+				var value = document.getElementById(classId).value;
+				//ac or sleeper => this value needs to be passed to modal
+				console.log(value);
+				//so train number is assigned to button name
+				tno=b.target.name;
+				//103
+				console.log(tno);
+				//c+0 for 1st button ...
+				console.log(classId);
+				var inputF = document.getElementById("tid");
+	            inputF.setAttribute('value', selectedId);
+	            
+	            var inputTid = document.getElementById("tno");
+	            inputTid.setAttribute('value', tno);
+	            //seat
+	            var inputClass = document.getElementById("c");
+	            inputClass.setAttribute('value', value);
+	            
+	           
+	            console.log(inputF,inputTid,inputClass);
+			})
+		}
+    	//set attribute in modal
+    	
+        
     </script>
 </body>
 </html>
