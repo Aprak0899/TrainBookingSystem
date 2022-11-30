@@ -27,7 +27,7 @@ public class BookingHistory extends HttpServlet {
 	private String jdbcUsername = "root";
 	private String jdbcPassword = "root";
 	private static ArrayList<Ticket> ticketList = new ArrayList<Ticket>();
-	
+	private String val;
 	//-------------connection------------------
 	
 	protected Connection getConnection() {
@@ -160,20 +160,51 @@ public class BookingHistory extends HttpServlet {
 	private void updateUser(HttpServletRequest request, HttpServletResponse response) 
 			throws SQLException, IOException {
 		//we need ticket object from jsp file
+		
 		int id = Integer.parseInt(request.getParameter("id"));
+		
 		if(ticketList!=null) {
 			System.out.println(ticketList.get(id).getpName());
 			updateTrain(ticketList.get(id));
 		}
-		
-		response.sendRedirect("list");
+		RequestDispatcher dispatcher = null;
+		request.setAttribute("bh","bh");
+		dispatcher=request.getRequestDispatcher("BookingHistory");
+		try {
+			dispatcher.forward(request, response);
+		} catch (ServletException | IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 	@Override
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		
+		this.val = request.getParameter("bh");
+		if(request.getAttribute("bh")!=null) {
+			this.val=(String) request.getAttribute("bh");
+		}
+		int id=-1;
+		if(request.getParameter("id")!=null) {
+			
+		id = Integer.parseInt(request.getParameter("id"));
+		}
 		String action = request.getServletPath();
+		if(this.val!=null) {
+			if(val.matches("bh")) {
+				this.val="";
+				action="/list";
+			}
+			
+		}else if(id>=0) {
+			this.val="bh";
+			action="/update";
+		}
+		System.out.println("val ="+val);
+		//
+		
+		//String action = request.getServletPath();
 		System.out.println("works = "+action);
 		System.out.println("action = "+action);
 
