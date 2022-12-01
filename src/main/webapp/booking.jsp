@@ -166,12 +166,20 @@ input[type=number]::-webkit-outer-spin-button {
               <li class="nav-item">
                 <a class="nav-link" href="logout">Log Out</a>
               </li>
-
-              <li class="nav-item ms-2 d-none d-md-inline">
-                <a class="btn btn-secondary"
+              <li class="nav-item">
+                <a
+                  class="nav-link"
+                  href="#reviews"
+                  data-bs-toggle="modal"
+                  data-bs-target="#profile-modal"
                   ><%=session.getAttribute("name") %></a
                 >
+                
               </li>
+				<li class="nav-item ms-2 d-none d-md-inline">
+                  <button class="btn btn-secondary" onclick="trainB()"><%=session.getAttribute("name") %></button>
+                </li>
+              
             </ul>
           </div>
         </div>
@@ -313,7 +321,40 @@ input[type=number]::-webkit-outer-spin-button {
 	
 	
 	<!-- profile -->
-	
+	<div
+        class="modal fade"
+        id="profile-modal"
+        tabindex="-1"
+        aria-labelledby="modal-title"
+        aria-hidden="true"
+      >
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="modal-title">Add passengers</h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="modal"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="modal-body">
+             <div class="popup">
+          <div class="card">
+            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="..." />
+            <h1>Aman Singh</h1>
+            <p>ID:101</p>
+            <p>Email:aman@gmail.com</p>
+            <p>Phone:1234567890</p>
+          </div>
+          <button type="button" class="hide" onclick="trainC()">Close</button>
+        </div>
+            </div>
+            
+          </div>
+        </div>
+      </div>
 	<section class="bg-light">
     <div class="container">
         <div class="row">
@@ -377,6 +418,21 @@ input[type=number]::-webkit-outer-spin-button {
         </div>
     </div>
 </section>
+<!-- profile  -->
+<div>
+      <div class="form-popup" id="user-profile">
+        <div class="popup">
+          <div class="card">
+            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="..." />
+            <h1>Aman Singh</h1>
+            <p>ID:101</p>
+            <p>Email:aman@gmail.com</p>
+            <p>Phone:1234567890</p>
+          </div>
+          <button type="button" class="hide" onclick="trainC()">Close</button>
+        </div> 
+      </div>
+    </div>
 	
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
@@ -385,6 +441,11 @@ input[type=number]::-webkit-outer-spin-button {
     ></script>
 
     <script>
+    //for profile
+    function trainB(){
+        document.getElementById("user-profile").style.display = "flex";
+      }
+    //
       const tooltips = document.querySelectorAll(".tt");
       tooltips.forEach((t) => {
         new bootstrap.Tooltip(t);
