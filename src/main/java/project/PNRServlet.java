@@ -55,13 +55,19 @@ public class PNRServlet extends HttpServlet {
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/trainbookingsystem?allowPublicKeyRetrieval=true&useSSL=false","root","root");
 			//works
-			PreparedStatement pstmt = con.prepareStatement(" SELECT Reservation_status , Passenger_name FROM trainbookingsystem.passenger where PNR = ? ; ");
+			PreparedStatement pstmt = con.prepareStatement(" select *  from  train as t join passenger as p on p.Train_no=t.Train_no where p.PNR = ? ; ");
 			pstmt.setInt(1, pnr);
 			
 			ResultSet rs = pstmt.executeQuery();
 			if(rs.next()) {
-				request.setAttribute("status", rs.getInt(1));
-				request.setAttribute("name", rs.getString(2));
+				request.setAttribute("pnr_no", rs.getInt(18));
+				request.setAttribute("t_no", rs.getInt(1));
+				request.setAttribute("t_name", rs.getString(2));
+				request.setAttribute("name", rs.getString(15));
+				request.setAttribute("status", rs.getInt(17));
+				request.setAttribute("gender", rs.getString(16));
+				request.setAttribute("seat", rs.getString(20));
+				
 				dispatcher=request.getRequestDispatcher("pnr.jsp");
 			}else {
 				request.setAttribute("status", "failed");

@@ -53,7 +53,7 @@
         </nav>
       
         <div class="row justify-content-center" style="margin-top: 15%">
-          <div class="col-lg-8 list-group-item px-4" style="background-color: white; opacity: 0.7">
+          <div class="col-lg-8 list-group-item px-4 rounded" style="background-color: white; opacity: 0.7">
             
             <!-- <div
               class="list-group-item py-3"
@@ -85,12 +85,13 @@
                                  </select>
                            
                         </ul>
-                        <button type="submit" >Book Tickets </button>
+                        <input type="hidden" name="flag" value="search" />
+                        <button type="submit">Book Tickets </button>
                     </form>
                 </div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                 
-                pnr
+         
                 
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                     <form method="post" action="pnr">
@@ -117,12 +118,9 @@
       <section id="pricing" class="bg-light">
         <div class="container-lg">
           <div class="text-center">
-            <h2>Gallery</h2>
+            <h2>Incredible India !</h2>
             <p class="lead text-muted">
-              Lorem ipsum, dolor sit amet consectetur adipisicing elit. Sed quae
-              ipsum rerum pariatur. Explicabo assumenda sequi odio molestias
-              pariatur iure ipsum, molestiae nisi, aut aliquam in nobis! Voluptas,
-              ipsam facilis.
+              One of the oldest civilisations in the world, India is a mosaic of multicultural experiences. With a rich heritage and myriad attractions, the country is among the most popular tourist destinations in the world.
             </p>
           </div>
   
@@ -130,17 +128,54 @@
             <div class="col-8 col-lg-4 col-xl-3">
               <div class="card border-0">
                 <div class="card-body text-center py-4">
-                  <h4 class="card-title">Darjeeling</h4>
-                  <p class="lead card-subtitle">Must visit</p>
+                  <h4 class="card-title">Bangalore</h4>
+                  <!--  -->
+                  <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active" data-bs-interval="2000">
+      <img src="images/b1.jpg" style="height: 200;" class="d-block w-100 rounded" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        
+      </div>
+    </div>
+    <div class="carousel-item" data-bs-interval="2000">
+      <img src="images/b2.jpg" style="height: 200;"" class="d-block w-100 rounded" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        
+      </div>
+    </div>
+    <div class="carousel-item" data-bs-interval="2000">
+      <img src="images/b3.jpg" style="height: 200;" class="d-block w-100 rounded" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+       
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+                  
+                  <!--  -->
+                  <br>
+                  <p class="lead card-subtitle">One State Many Worlds !</p>
                   <p class="display-5 my-4 text-primary fw-bold">
-                    <span>&#8377</span>12,999
+                    <span>&#8377</span>2,999
                   </p>
                   <p class="card-text mx-5 text-muted d-none d-lg-block">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Mollitia, vitae magni! Repellat commodi a fuga corporis saepe
-                    dolorum.
+                   The bustling metropolis beckons vacationers primarily with its scenic, lush green spaces that have earned it the nickname, 'Garden City.
                   </p>
-                  <a href="#" class="btn btn-outline-primary btn-lg mt-3">
+                  <a href="#" class="btn btn-outline-primary btn-lg mt-3" onClick="travel('bangalore')">
                     Travel Now
                   </a>
                 </div>
@@ -153,15 +188,52 @@
                   Most Popular
                 </div>
                 <div class="card-body text-center py-5">
-                  <h4 class="card-title">Manali</h4>
-                  <p class="lead card-subtitle">Must visit</p>
-                  <p class="display-4 my-4 text-primary fw-bold"><span>&#8377</span>18,999</p>
+                  <h4 class="card-title">Delhi</h4>
+                  <!--  -->
+                  <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active" data-bs-interval="2000">
+      <img src="images/d1.jpg" style="height: 250;" class="d-block w-100 rounded" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        
+      </div>
+    </div>
+    <div class="carousel-item" data-bs-interval="2000">
+      <img src="images/d2.jpg" style="height: 250;" class="d-block w-100 rounded" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        
+      </div>
+    </div>
+    <div class="carousel-item" data-bs-interval="2000">
+      <img src="images/d3.jpg" style="height: 250;" class="d-block w-100 rounded" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+       
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+                  
+                  <!--  -->
+                  <br>
+                  <p class="lead card-subtitle">Dilli Hain Hum !</p>
+                  <p class="display-4 my-4 text-primary fw-bold"><span>&#8377</span>1,999</p>
                   <p class="card-text mx-5 text-muted d-none d-lg-block">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Mollitia, vitae magni! Repellat commodi a fuga corporis saepe
-                    dolorum.
+                    Delhi is of great historical significance as an important commercial, transport, and cultural hub, as well as the political centre of India.
                   </p>
-                  <a href="#" class="btn btn-outline-primary btn-lg mt-3">
+                  <a href="#" class="btn btn-outline-primary btn-lg mt-3" onClick="travel('delhi')">
                     Travel Now
                   </a>
                 </div>
@@ -171,15 +243,53 @@
             <div class="col-8 col-lg-4 col-xl-3">
               <div class="card border-0">
                 <div class="card-body text-center py-4">
-                  <h4 class="card-title">Coorg</h4>
-                  <p class="lead card-subtitle">Must visit</p>
-                  <p class="display-5 my-4 text-primary fw-bold"><span>&#8377</span>24,999</p>
+                  <h4 class="card-title">Hyderabad</h4>
+                 
+                  <!--  -->
+                  <div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel">
+  <div class="carousel-indicators">
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+    <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+  </div>
+  <div class="carousel-inner">
+    <div class="carousel-item active" data-bs-interval="2000">
+      <img src="images/h001.jpg" style="height: 200;" class="d-block w-100 rounded" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        
+      </div>
+    </div>
+    <div class="carousel-item" data-bs-interval="2000">
+      <img src="images/h03.jpg" style="height: 200;" class="d-block w-100 rounded" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+        
+      </div>
+    </div>
+    <div class="carousel-item" data-bs-interval="2000">
+    <img src="images/h4.jpg" style="height: 200;" class="d-block w-100 rounded" alt="...">
+      <div class="carousel-caption d-none d-md-block">
+       
+      </div>
+    </div>
+  </div>
+  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+</div>
+                  
+                  <!--  -->
+                  <br>
+                  <p class="lead card-subtitle">It's all in it !</p>
+                  <p class="display-5 my-4 text-primary fw-bold"><span>&#8377</span>4,999</p>
                   <p class="card-text mx-5 text-muted d-none d-lg-block">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                    Mollitia, vitae magni! Repellat commodi a fuga corporis saepe
-                    dolorum.
+                    Hyderabad is known as The City of Pearls, as once it was the only global centre for trade of large diamonds, emeralds and natural pearls.
                   </p>
-                  <a href="#" class="btn btn-outline-primary btn-lg mt-3">
+                  <a href="#" class="btn btn-outline-primary btn-lg mt-3" onClick="travel('hyderabad')">
                     Travel Now
                   </a>
                 </div>
@@ -197,12 +307,12 @@
       <section class="bg-light">
         <div class="container">
           <div class="text-center">
-            <h2>Stay in The Loop</h2>
-            <p class="lead">Get the latest updates as they happen...</p>
+            <h2>Thank You For Visiting Us</h2>
+            <p class="lead">Hope to See you Soon...</p>
           </div>
           <div class="row justify-content-center">
             <div class="col-md-8 text-center">
-              <p class="text-muted my-4">
+              <!-- <p class="text-muted my-4">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero
                 exercitationem voluptatibus porro, hic asperiores fuga illo
                 voluptates obcaecati deleniti veritatis sunt saepe quasi deserunt
@@ -217,7 +327,7 @@
                 data-bs-target="#reg-modal"
               >
                 Register for Updates
-              </button>
+              </button> -->
             </div>
           </div>
         </div>
@@ -269,6 +379,13 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
      
       <script>
+      function travel(x){
+    	  console.log("hi");
+    	  var dest = document.getElementById("dest");
+    	  dest.value=x;
+      }
+      
+      
         const tooltips = document.querySelectorAll(".tt");
         tooltips.forEach((t) => {
           new bootstrap.Tooltip(t);

@@ -1,5 +1,8 @@
 package project;
-public class Train {
+
+import java.util.Comparator;
+
+public class Train{
 	private int tId;
 	private String tName;
 	private String tArrival;
@@ -60,4 +63,28 @@ public class Train {
 	public String getDeparture() {
 		return tDeparture;
 	}
+	
+	// Usage of comparator
+    public static Comparator<Train> DurComparator = new Comparator<Train>() {
+		@Override
+		public int compare(Train o1, Train o2) {
+			int dur1= o1.getDuration();
+			int dur2= o2.getDuration();
+
+	        // Returning in ascending order
+	        return dur1-dur2;
+		}
+    };
+ 
+ // Usage of comparator
+    public static Comparator<Train> DeptComparator = new Comparator<Train>() {
+		@Override
+		public int compare(Train o1, Train o2) {
+			String arr1= o1.getDeparture();
+			String arr2= o2.getDeparture();
+
+			// Returning in ascending order
+            return arr1.compareTo(arr2);
+		}
+    };
 }

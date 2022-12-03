@@ -64,7 +64,7 @@ public class LoginServlet extends HttpServlet {
 				session.setAttribute("mobile", rs.getString("Mobile"));
 				session.setAttribute("email", rs.getString("Email"));
 				session.setAttribute("gender", rs.getString("Gender"));
-				dispatcher=request.getRequestDispatcher("index.jsp");
+				dispatcher=request.getRequestDispatcher("booking.jsp");
 			}else {
 				request.setAttribute("status", "failed");
 				dispatcher=request.getRequestDispatcher("login.jsp");

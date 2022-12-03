@@ -8,6 +8,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.time.LocalDate;
+
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -28,6 +30,7 @@ public class BookingHistory extends HttpServlet {
 	private String jdbcPassword = "root";
 	private static ArrayList<Ticket> ticketList = new ArrayList<Ticket>();
 	private String val;
+	private int UserId;
 	//-------------connection------------------
 	
 	protected Connection getConnection() {
@@ -54,7 +57,7 @@ public class BookingHistory extends HttpServlet {
 		// Step 1: Establishing a Connection
 		try (Connection connection = getConnection();
 				// Step 2:Create a statement using connection object
-			PreparedStatement preparedStatement = connection.prepareStatement("select * from train join passenger on train.Train_no=passenger.Train_no where passenger.User_id= ? ");) 
+			PreparedStatement preparedStatement = connection.prepareStatement("select * from train join passenger on train.Train_no=passenger.Train_no where passenger.User_id= ? order by Reservation_status desc, Date_of_passing asc  ");) 
 		{
 			preparedStatement.setInt(1, u_id);
 			//System.out.println(preparedStatement);
@@ -107,6 +110,24 @@ public class BookingHistory extends HttpServlet {
 		return rowUpdated;
 	}
 	
+	//cancel those ticket whose date have been expired
+	public boolean cancelExpiredTicket() throws SQLException {
+		boolean rowUpdated;
+		LocalDate date = LocalDate.now();
+		try (Connection connection = getConnection();
+				PreparedStatement statement = connection.prepareStatement("update  train as t join passenger as p on p.Train_no=t.Train_no set Reservation_status = -1 where p.User_id= ? and Reservation_status=1 and t.Date_of_passing < ? ;");) 
+		{
+			//System.out.println("updated USer:"+statement);
+			statement.setInt(1, this.UserId);
+			//date
+			statement.setString(2, date.toString());
+
+			rowUpdated = statement.executeUpdate() > 0;
+		}
+		
+		return rowUpdated;
+	}
+	
 	//===================revert back train's seat availability ======================================
 	
 	public boolean updateTrain(Ticket t) throws SQLException {
@@ -146,10 +167,11 @@ public class BookingHistory extends HttpServlet {
 			throws SQLException, IOException, ServletException {
 		HttpSession session = request.getSession();
 		int id = (int)session.getAttribute("id"); 
+		this.UserId=id;
 		System.out.println("session user id = "+id);
+		cancelExpiredTicket();
 		ticketList = this.selectAllUsers(id);
-		System.out.println("list user = "+ticketList.size());
-		System.out.println("list user = "+ticketList.get(0).getpName());
+		
 		request.setAttribute("list", ticketList);
 		RequestDispatcher dispatcher = request.getRequestDispatcher("bookingHistory.jsp");
 		dispatcher.forward(request, response);

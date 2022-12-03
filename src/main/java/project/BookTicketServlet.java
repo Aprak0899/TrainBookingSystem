@@ -210,32 +210,21 @@ public class BookTicketServlet extends HttpServlet {
 			
 			
 		}
-		//add code for book ticket inside for loop to add ticket 1 by one
-		//works - passenger added to plist
-		for(int i=0;i<pl.size();i++) {
-			System.out.println("name = "+pl.get(i).getpName()+" gender = "+pl.get(i).getpGender()+" pnr = "+pl.get(i).getpnr());
-			//System.out.println("name = "+pl.get(i).getpName()+" gender = "+pl.get(i).getpGender());
-			
-//			boolean ba=BookTicket(pl.get(i));
-//			System.out.println("ticket updated = " +ba);
-			
-		}
 		
 		try {
 			boolean b= updateTrain();
-			System.out.println("train updated = " +b);
 			for(int i=0;i<pl.size();i++) {
-				//System.out.println("name = "+pl.get(i).getName()+" gender = "+pl.get(i).getGender());
 				
 				boolean ba=BookTicket(pl.get(i));
-				System.out.println("ticket updated = " +ba);
-				
+
 			}
+			request.setAttribute("status","success");
 			dispatcher=request.getRequestDispatcher("booking.jsp");
 			dispatcher.forward(request, response);
 
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
+			request.setAttribute("status","failed");
 			e1.printStackTrace();
 		}
 		
