@@ -413,13 +413,12 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h5 class="modal-title" id="modal-title">Add passengers</h5>
+					<h5 class="modal-title" id="modal-title">Alert</h5>
 					<button type="button" class="btn-close" data-bs-dismiss="modal"
 						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<label for="modal-email" class="form-label">select total
-						number of passengers:</label>
+					<label for="modal-email" class="form-label">Do you wish to book ticket ?</label>
 					<form id="f1" method="get" action="bookTicket">
 						<input type="hidden" name="tid" id="tid" value=""> <input
 							type="hidden" name="tno" id="tno" value=""> <input
@@ -504,6 +503,26 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 		</script>
 
 	<script>
+	//date
+
+    const date = new Date();
+
+    let day = date.getDate();
+    let month = date.getMonth() + 1;
+    let year = date.getFullYear();
+    //let currentDate = `${year}-${month}-${day}`;
+    let currentDate = new Date().toJSON().slice(0, 10);
+    var d = document.getElementById("date");
+    console.log(currentDate);
+    let ld = new Date(date.getFullYear(), date.getMonth(), date.getDay() + 11)
+      .toJSON()
+      .slice(0, 10);
+    console.log(ld);
+    d.setAttribute("min", currentDate);
+    d.setAttribute("value", currentDate);
+    d.setAttribute("max", ld);
+
+    //
 	//alter
 	function rev() {
         var src = document.getElementById("src");

@@ -77,7 +77,7 @@
                             <input id="src" name="src" type="text" placeholder="Origin Station" required="required" > 
                             </b>
                             <b class="fsize"> To <input id="dest" name="dest" type="text" placeholder="Destination Station" required="required">  </b>
-                            <b class="fsize">  Date <input id="date" name="date" type="Date" placeholder="dd-mm-yy">  </b>
+                            <b class="fsize">  Date <input id="date" name="date" type="Date" placeholder="dd-mm-yy" >  </b>
                             <label class="fsize"><strong> Class </strong> </label>
                                 <select id="class" name="class">
                       
@@ -381,6 +381,28 @@
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
      
       <script>
+      //date
+      
+
+      const date = new Date();
+
+      let day = date.getDate();
+      let month = date.getMonth() + 1;
+      let year = date.getFullYear();
+      //let currentDate = `${year}-${month}-${day}`;
+      let currentDate = new Date().toJSON().slice(0, 10);
+      var d = document.getElementById("date");
+      console.log(currentDate);
+      let ld = new Date(date.getFullYear(), date.getMonth(), date.getDay() + 11)
+        .toJSON()
+        .slice(0, 10);
+      console.log(ld);
+      d.setAttribute("min", currentDate);
+      d.setAttribute("value", currentDate);
+      d.setAttribute("max", ld);
+      
+      //
+      
       function travel(x){
     	  console.log("hi");
     	  var dest = document.getElementById("dest");
