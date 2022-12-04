@@ -22,7 +22,7 @@ public class SearchServlet extends HttpServlet {
 	private static ArrayList<Train> trainDetails;
 	private static String src;
 	private static String dest;
-    
+	private static String travelClass;
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -39,12 +39,21 @@ public class SearchServlet extends HttpServlet {
 	//sort by duration
 	
 	protected void sortByDuration() {
-		System.out.println("sort"+trainDetails==null);
+		
 		Collections.sort(trainDetails,Train.DurComparator);
 	}
 	protected void sortByArrival() {
-		System.out.println("sort"+trainDetails==null);
+		
 		Collections.sort(trainDetails,Train.DeptComparator);
+	}
+	
+	protected void sortBySeatAvailability() {
+		if(this.travelClass.matches("AC")) {
+			Collections.sort(trainDetails,Train.AcComparator);
+		}else {
+			Collections.sort(trainDetails,Train.NacComparator);
+		}
+		
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -56,7 +65,7 @@ public class SearchServlet extends HttpServlet {
 		if(flag!=null) {
 			
 		
-		if(flag!=null && flag.matches("dur")) {
+		if(flag.matches("Sort by travel time")) {
 			//sort by duration
 			sortByDuration();
 			request.setAttribute("src", this.src);
@@ -64,7 +73,7 @@ public class SearchServlet extends HttpServlet {
 			request.setAttribute("trainData", trainDetails);
 			dispatcher=request.getRequestDispatcher("booking.jsp");
 			dispatcher.forward(request, response);
-		}else if(flag.matches("arrival")) {
+		}else if(flag.matches("Sort by arrival time")) {
 			//sort by arrival
 			
 			sortByArrival();
@@ -73,7 +82,14 @@ public class SearchServlet extends HttpServlet {
 			request.setAttribute("trainData", trainDetails);
 			dispatcher=request.getRequestDispatcher("booking.jsp");
 			dispatcher.forward(request, response);
-		}else {
+		}else if(flag.matches("Sort by seat Availability")){
+			sortBySeatAvailability();
+			request.setAttribute("src", this.src);
+			request.setAttribute("dest", this.dest);
+			request.setAttribute("trainData", trainDetails);
+			dispatcher=request.getRequestDispatcher("booking.jsp");
+			dispatcher.forward(request, response);
+		}else{
 			//pura neeche ka code
 		
 		
@@ -82,7 +98,7 @@ public class SearchServlet extends HttpServlet {
 		this.src=request.getParameter("src");
 		this.dest=request.getParameter("dest");
 		String date=request.getParameter("date");
-		String travelClass=request.getParameter("class");
+		this.travelClass=request.getParameter("class");
 		
 		
 		System.out.println("src = "+src+" dest = "+dest+" date = "+date+" class = "+travelClass);

@@ -101,11 +101,18 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 </head>
 <body>
 	<script src="js/main.js"></script>
-	<% if(request.getAttribute("status")!=null){ %>
-	<input type="hidden" id="status" value="<%=request.getAttribute("status")%>">
-	<%}else{ %>
+	<%
+	if (request.getAttribute("status") != null) {
+	%>
+	<input type="hidden" id="status"
+		value="<%=request.getAttribute("status")%>">
+	<%
+	} else {
+	%>
 	<input type="hidden" id="status" value="a">
-	<%} %>
+	<%
+	}
+	%>
 	<div id="landing">
 		<!-- navbar -->
 		<nav class="navbar navbar-expand-md navbar-light pt-4 pb-4"
@@ -161,7 +168,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 								</div>
 							</form>
 						</li>
-<li class="nav-item">
+						<li class="nav-item">
 						<li class="nav-item nav-link"><input class="btn btn-success"
 							type="submit" onClick="trainB()"
 							value="<%=session.getAttribute("name")%>" /></li>
@@ -179,10 +186,10 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 				</div>
 			</div>
 		</nav>
-		
-		
+
+
 		<!-- search  -->
-		
+
 		<br>
 		<div class="row justify-content-center">
 			<div class="col-lg-8 list-group-item px-4 rounded"
@@ -225,7 +232,8 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 
 
 								<div class="col-sm-2 ">
-									<input id="date" required="required" name="date" type="Date" placeholder="dd-mm-yy">
+									<input id="date" required="required" name="date" type="Date"
+										placeholder="dd-mm-yy">
 								</div>
 
 
@@ -237,9 +245,9 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 										<option value="Sleeper">Sleeper</option>
 									</select>
 								</div>
-	<input type="hidden" name="flag" value="search"/>
+								<input type="hidden" name="flag" value="search" />
 								<div class="col-sm-2">
-									<button type="submit" >Modify Search</button>
+									<button type="submit">Modify Search</button>
 								</div>
 
 							</div>
@@ -252,33 +260,57 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 				<br>
 			</div>
 		</div>
-		
-		
 		<br>
-		<form method="post" action="search">
-								<div class="form-group form-button">
+		<div class="row justify-content-center">
+			<div class="col-lg-8 px-4 rounded row justify-content-center"
+				style="background-color: white; opacity: 0.7">
+				<div class="col-sm-3">
+					<form method="post" action="search">
+						<div class="form-group form-button">
 
-									
-									<li class="nav-item nav-link"><input
-										class="btn btn-secondary" type="submit" name="flag" id="signin"
-										value="dur" /></li>
 
-								</div>
-							</form>
-	<form method="post" action="search">
-								<div class="form-group form-button">
+							<li class="nav-item nav-link"><input
+								class="btn btn-secondary" type="submit" name="flag" id="signin"
+								value="Sort by travel time" /></li>
 
-									
-									<li class="nav-item nav-link"><input
-										class="btn btn-secondary" type="submit" name="flag" id="signin"
-										value="arrival" /></li>
+						</div>
+					</form>
+				</div>
+				<div class="col-sm-3">
 
-								</div>
-							</form>
-		
+					<form method="post" action="search">
+						<div class="form-group form-button">
+
+
+							<li class="nav-item nav-link"><input
+								class="btn btn-secondary" type="submit" name="flag" id="signin"
+								value="Sort by arrival time" /></li>
+
+						</div>
+					</form>
+				</div>
+				<div class="col-sm-3">
+
+					<form method="post" action="search">
+						<div class="form-group form-button">
+
+
+							<li class="nav-item nav-link"><input
+								class="btn btn-secondary" type="submit" name="flag" id="signin"
+								value="Sort by seat Availability" /></li>
+
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+
+		<br>
+
+
 		<!-- train list -->
-		
-		
+
+
 		<div class="row justify-content-center">
 			<div class="col-lg-8 list-group-item px-4 rounded"
 				style="background-color: white; opacity: 0.7">
@@ -311,10 +343,12 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 
 				<div class="row content">
 					<p class="col-sm-3 ">
-						Dept time :: <%=td.get(i).getDeparture()%></p>
+						Dept time ::
+						<%=td.get(i).getDeparture()%></p>
 					<p class="col-sm-3 "><%=request.getAttribute("src")%></p>
 					<p class="col-sm-3 ">
-						Arrival time :: <%=td.get(i).getArrival()%></p>
+						Arrival time ::
+						<%=td.get(i).getArrival()%></p>
 					<p class="col-sm-3 "><%=request.getAttribute("dest")%></p>
 
 
@@ -501,28 +535,47 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 	</section> --%>
 
 	<!-- profile  -->
-	<% if(session.getAttribute("gender")!=null){%>
+	<%
+	if (session.getAttribute("gender") != null) {
+	%>
 	<div>
 		<div class="form-popup" id="user-profile">
 			<div class="popup">
 				<div class="card">
-				<%if(new String((String) session.getAttribute("gender")).matches("M")){ %>
-					<img src="https://bootdey.com/img/Content/avatar/avatar1.png" alt="..." />
-						<%}else if(new String((String) session.getAttribute("gender")).matches("F")){ %>
-						<img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="..." />
-						<%}else{ %>
-						<img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="..." />
-						<%} %>
-					<h1><%=session.getAttribute("name")%> <%=session.getAttribute("lname")%></h1>
-					<p>ID:<%=session.getAttribute("id")%></p>
-					<p>Email:<%=session.getAttribute("email")%></p>
-					<p>Phone:<%=session.getAttribute("mobile")%></p>
+					<%
+					if (new String((String) session.getAttribute("gender")).matches("M")) {
+					%>
+					<img src="https://bootdey.com/img/Content/avatar/avatar1.png"
+						alt="..." />
+					<%
+					} else if (new String((String) session.getAttribute("gender")).matches("F")) {
+					%>
+					<img src="https://bootdey.com/img/Content/avatar/avatar3.png"
+						alt="..." />
+					<%
+					} else {
+					%>
+					<img src="https://bootdey.com/img/Content/avatar/avatar7.png"
+						alt="..." />
+					<%
+					}
+					%>
+					<h1><%=session.getAttribute("name")%>
+						<%=session.getAttribute("lname")%></h1>
+					<p>
+						ID:<%=session.getAttribute("id")%></p>
+					<p>
+						Email:<%=session.getAttribute("email")%></p>
+					<p>
+						Phone:<%=session.getAttribute("mobile")%></p>
 				</div>
 				<button type="button" class="hide" onclick="trainC()">Close</button>
 			</div>
 		</div>
 	</div>
-<%} %>
+	<%
+	}
+	%>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
 		integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"

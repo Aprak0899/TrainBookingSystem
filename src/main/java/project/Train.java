@@ -87,4 +87,26 @@ public class Train{
             return arr1.compareTo(arr2);
 		}
     };
+    public static Comparator<Train> AcComparator = new Comparator<Train>() {
+		@Override
+		public int compare(Train o1, Train o2) {
+			int dur1= o1.getACSeat();
+			int dur2= o2.getACSeat();
+
+	        // Returning in descending order
+	        return dur2-dur1;
+		}
+    };
+ 
+    public static Comparator<Train> NacComparator = new Comparator<Train>() {
+		@Override
+		public int compare(Train o1, Train o2) {
+			int dur1= o1.getNACSeat();
+			int dur2= o2.getNACSeat();
+
+	        // Returning in ascending order
+	        return dur2-dur1;
+		}
+    };
+ 
 }
