@@ -31,14 +31,16 @@ public class SignupServlet extends HttpServlet {
 		String uemail = request.getParameter("email");
 		String upwd = request.getParameter("pass");
 		String umobile = request.getParameter("contact");
-
-		System.out.println(gender);
+		
+		
+		//int mob= Integer.parseInt((String) request.getParameter("contact"));
+		
+		//System.out.println(mob);
 		String reupwd = request.getParameter("re_pass");
 		boolean flag = true;
 		RequestDispatcher dispatcher = null;
 
-		// --------------------------------------------serverSide
-		// validation------------------------------
+		// --------------------------------------------serverSide validation------------------------------
 
 		if (fname == null || fname.equals("")) {
 			flag = false;
@@ -74,13 +76,13 @@ public class SignupServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 		} else if (umobile.length() != 10) {
 			flag = false;
+			System.out.println("mob len = "+umobile.length());
 			request.setAttribute("status", "invalidMobileLength");
 			dispatcher = request.getRequestDispatcher("registration.jsp");
 			dispatcher.forward(request, response);
 		}
 
-		// -------------------------------------database
-		// code-----------------------------------
+		// -------------------------------------database code-----------------------------------
 
 		Connection con = null;
 		dispatcher = request.getRequestDispatcher("registration.jsp");

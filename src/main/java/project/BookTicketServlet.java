@@ -30,25 +30,25 @@ public class BookTicketServlet extends HttpServlet {
 	private String jdbcUsername = "root";
 	private String jdbcPassword = "root";
 	
+	//ipno == json array size coming from addpass.jsp
     private int ipno;
+    //this we need static
     private static int itno;
     private static int pnr;
     private static String seatClass;
+    //not static as when the submit button is pressed this page is refreshed destroying all non static fields
     private int Availability_of_seats;
     private int General_seats;
     private int AC_seats;
     
+    //================(1)  do get () triggered when book now is pressed from booking. jsp ========================
+    
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		System.out.println("inside get");
 		String tid = req.getParameter("tid");
 		String tno = req.getParameter("tno");
 		String seatType = req.getParameter("c");
-		
-		
-		
-		System.out.println(" get seatType = "+seatType);
 		//re assign seat type according to database
 		if(seatType.matches("AC")) {
 			this.seatClass="A";
@@ -58,14 +58,10 @@ public class BookTicketServlet extends HttpServlet {
 		//train no. in int
 		this.itno = Integer.valueOf(tno);
 
-		
-		System.out.println("tid = "+tid+" tno = "+tno);
 		RequestDispatcher dispatcher = null;
-//		req.setAttribute("tid", Integer.valueOf(tid));
-//		req.setAttribute("tno", Integer.valueOf(tno));
 		dispatcher=req.getRequestDispatcher("AddPasssenger.jsp");
 		dispatcher.forward(req, resp);
-		//------------------------------------
+		
 	}
 
 	//-------------connection------------------
@@ -84,9 +80,8 @@ public class BookTicketServlet extends HttpServlet {
 			}
 			return connection;
 		}
-		//get seat status
+		//===============  get seat status ========== req when we are updating the train seat before booking
 		public void getSeatStatus() throws SQLException {
-			
 			try (Connection connection = getConnection();
 					// insert
 					PreparedStatement statement = connection.prepareStatement("SELECT Availability_of_seats, General_seats, AC_seats FROM train where Train_no=?;");) 
@@ -104,24 +99,18 @@ public class BookTicketServlet extends HttpServlet {
 			
 		}
 		
-		//===================change train's seat availability ======================================
+		//===================change train's seat availability ======== to be called before booking ==============================
 		
 		public boolean updateTrain() throws SQLException {
 			
 			boolean rowUpdated;
-			
 			//true for Ac and false for NAC
-			System.out.println("seat = "+this.seatClass);
+	
 			boolean seatType=this.seatClass.matches("A")?true:false;
 			//System.out.println("total seat = "+t.getAvailSeat()+" ac = "+t.getACSeat()+" NAC = "+t.getNACSeat()+" Is AC =  "+seatType);
 			try (Connection connection = getConnection();
 					PreparedStatement statement = connection.prepareStatement("update train set Availability_of_seats = ?, General_seats = ?, AC_seats= ? where Train_no = ?;");) 
 			{
-				System.out.println("updated USer:"+itno);
-				
-				
-				
-				
 				statement.setInt(1, this.Availability_of_seats-this.ipno);
 				if(seatType) {
 					//true for ac
@@ -134,7 +123,6 @@ public class BookTicketServlet extends HttpServlet {
 					statement.setInt(3, this.AC_seats);
 				}
 				statement.setInt(4, this.itno);
-
 				rowUpdated = statement.executeUpdate() > 0;
 			}
 			
@@ -152,11 +140,11 @@ public class BookTicketServlet extends HttpServlet {
 				statement.setInt(1, t.getuid());
 				statement.setString(2, t.getpName());
 				statement.setString(3, t.getpGender());
+				//1 means booked  == already set earlier
 				statement.setInt(4, t.getStatus());
 				statement.setInt(5, t.getpnr());
 				statement.setInt(6, t.getId());
 				statement.setString(7, t.getpSeatType());
-				
 
 				rowUpdated = statement.executeUpdate() > 0;
 			}
@@ -164,15 +152,12 @@ public class BookTicketServlet extends HttpServlet {
 			return rowUpdated;
 		}
 		
-		//get me last pnr
+		//===============get me last pnr so that we can create a new one from that by +1================
 		public void getLastPNR() throws SQLException {
-			
 			try (Connection connection = getConnection();
 					// insert
 					PreparedStatement statement = connection.prepareStatement("SELECT PNR FROM passenger order by PNR desc limit 1;");) 
 			{
-				
-
 				 ResultSet rs=statement.executeQuery();
 				 if(rs.next()) {
 					 this.pnr=rs.getInt(1);
@@ -181,7 +166,7 @@ public class BookTicketServlet extends HttpServlet {
 			}
 			
 		}
-		
+		//===============do post executed after addpass.jsp is submitted
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -189,7 +174,7 @@ public class BookTicketServlet extends HttpServlet {
 		RequestDispatcher dispatcher = null;
 		HttpSession session = request.getSession();
 		
-		//============================================= js form
+		//=============================================addpass.js form=================
 		//this will give you name and gender
 		String arr= request.getParameter("array");
 		System.out.println("from post" + arr);
@@ -200,11 +185,8 @@ public class BookTicketServlet extends HttpServlet {
         System.out.println("from post" + arrObj.length());
 		this.ipno=arrObj.length();
 		//===========================================
-//		String pcount=request.getParameter("flag");
-//		//this will come from addp.jsp
-//		String pno = request.getParameter("pno");
-		
-		
+
+		//============= ****  main code *** ====================
 		
 		// TODO Auto-generated method stub
 		try {
@@ -215,20 +197,12 @@ public class BookTicketServlet extends HttpServlet {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
 		}
-		System.out.println("avail seats = "+this.Availability_of_seats);
 		
 		int id = (int)session.getAttribute("id"); 
-		
-		
-		
+		//to store all tickets for new passengers
 		ArrayList<Ticket> pl = new ArrayList<>();
 		for (int i=0;i<arrObj.length();i++) {
-			
-//			Passenger p = new Passenger();
-//			p.setName(request.getParameter(nameId));
-//			p.setGender(request.getParameter(gId));
-//			pl.add(p);
-			
+
 			Ticket t = new Ticket();
 		
 			t.setp_Name(arrObj .getJSONObject(i).getString("name"));
@@ -267,11 +241,6 @@ public class BookTicketServlet extends HttpServlet {
 			dispatcher.forward(request, response);
 			
 		}
-		
-		
-		//--------------------------------fetch detail from passenger form---------
-		
-		//-------------------------------------database code-----------------------------------
 		
 	}
 

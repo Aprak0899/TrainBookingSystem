@@ -69,6 +69,7 @@
               </ul>
               <div class="tab-content" id="pills-tabContent">
                 <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                
                     <form method="post" action="search">
                         <ul>
                             <b class="fsize"> 
@@ -88,6 +89,7 @@
                         <input type="hidden" name="flag" value="search" />
                         <button type="submit">Book Tickets </button>
                     </form>
+                    
                 </div>
                 <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
                 

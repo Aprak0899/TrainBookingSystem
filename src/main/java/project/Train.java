@@ -11,6 +11,7 @@ public class Train{
 	private int tAvailSeat;
 	private int tACSeat;
 	private int tNACSeat;
+	
 	//setter
 	public void setId(int Id) {
 		this.tId=Id;

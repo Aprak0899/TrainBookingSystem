@@ -29,6 +29,7 @@ public class LoginServlet extends HttpServlet {
 		
 		String uemail=request.getParameter("username");
 		String upwd=request.getParameter("password");
+		
 		RequestDispatcher dispatcher = null;
 		HttpSession session= request.getSession();
 		
@@ -50,6 +51,7 @@ public class LoginServlet extends HttpServlet {
 		
 		Connection con=null;
 		try {
+			
 			Class.forName("com.mysql.cj.jdbc.Driver");
 			con = DriverManager.getConnection("jdbc:mysql://localhost:3306/trainbookingsystem?allowPublicKeyRetrieval=true&useSSL=false","root","root");
 			//works
@@ -60,7 +62,9 @@ public class LoginServlet extends HttpServlet {
 			if(rs.next()) {
 				session.setAttribute("name", rs.getString("FirstName"));
 				session.setAttribute("lname", rs.getString("LastName"));
+				
 				session.setAttribute("id", rs.getInt("User_id"));
+				
 				session.setAttribute("mobile", rs.getString("Mobile"));
 				session.setAttribute("email", rs.getString("Email"));
 				session.setAttribute("gender", rs.getString("Gender"));

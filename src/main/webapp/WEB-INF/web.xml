@@ -52,12 +52,6 @@
 	</servlet>
 
 	<servlet>
-		<servlet-name>CancelServlet</servlet-name>
-		<display-name>CancelServlet</display-name>
-		<description />
-		<servlet-class>project.CancelServlet</servlet-class>
-	</servlet>
-	<servlet>
 		<servlet-name>BookTicketServlet</servlet-name>
 		<display-name>BookTicketServlet</display-name>
 		<description />
@@ -102,6 +96,7 @@
 		<servlet-name>PNRServlet</servlet-name>
 		<url-pattern>/PNRServlet</url-pattern>
 	</servlet-mapping>
+	
 	<servlet-mapping>
 		<servlet-name>PNRServlet</servlet-name>
 		<url-pattern>/pnr</url-pattern>
@@ -123,14 +118,6 @@
 		<url-pattern>/login</url-pattern>
 	</servlet-mapping>
 
-	<servlet-mapping>
-		<servlet-name>CancelServlet</servlet-name>
-		<url-pattern>/CancelServlet</url-pattern>
-	</servlet-mapping>
-	<servlet-mapping>
-		<servlet-name>CancelServlet</servlet-name>
-		<url-pattern>/cancel</url-pattern>
-	</servlet-mapping>
 	<servlet-mapping>
 		<servlet-name>BookTicketServlet</servlet-name>
 		<url-pattern>/BookTicketServlet</url-pattern>

@@ -60,13 +60,16 @@
 					<div class="signup-form">
 						<h2 class="form-title">Sign up</h2>
 					
+					
 						<form method="post" action="register" class="register-form"
 							id="register-form">
+							
 							<div class="form-group">
 								<label for="name"><i
 									class="zmdi zmdi-account material-icons-name"></i></label> <input
 									type="text" name="fname" id="fname" placeholder="Enter First Name" required="required"/>
 							</div>
+							
 							<div class="form-group">
 								<label for="name">
 									<i class="zmdi zmdi-account material-icons-name"></i>
@@ -74,19 +77,7 @@
 								<input type="text" name="lname" id="lname" placeholder="Enter last Name" required="required"/>
 							</div>
 							
-							<!--  <div class="form-group">
-							<div class="dropdown">
-							  <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-							    Select Gender
-							  </button>
-							  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-							    <li class="dropdown-item">Male</li>
-							    <li class="dropdown-item">Female</li>
-							    <li class="dropdown-item">Other</li>
-							  </ul>
-							  
-							</div>
-							 -->
+						
 							 
 							<div class="form-group">
 							
@@ -116,6 +107,7 @@
 								<input type="password" name="re_pass" id="re_pass"
 									placeholder="Confirm your password" required="required"/>
 							</div>
+							
 							<div class="form-group">
 								<label for="contact"><i class="zmdi zmdi-phone"></i></label>
 								<input type="text" name="contact" id="contact"

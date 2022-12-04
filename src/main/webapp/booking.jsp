@@ -2,6 +2,7 @@
 	pageEncoding="ISO-8859-1"%>
 <%@ page import="java.util.ArrayList"%>
 <%@ page import="project.Train"%>
+
 <%
 ArrayList<Train> td = (ArrayList<Train>) request.getAttribute("trainData");
 %>
@@ -147,7 +148,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 						%>
 						<li class="nav-item"><a class="nav-link"
 							href="registration.jsp">Sign Up</a></li>
-						<li class="nav-item"><a class="nav-link" href="login.jsp">Loign</a></li>
+						<li class="nav-item"><a class="nav-link" href="login.jsp">Login</a></li>
 						<%
 						}
 						%>
@@ -199,6 +200,9 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 				<div class="tab-content" id="pills-tabContent">
 					<div class="tab-pane fade show active" id="pills-home"
 						role="tabpanel" aria-labelledby="pills-home-tab">
+						
+						
+						
 						<form method="post" action="search">
 							<div class="row content justify-content-center">
 								<div class="row content justify-content-center col-sm-6 ">
@@ -318,6 +322,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 				if (td != null) {
 					for (int i = 0; i < td.size(); i++) {
 				%>
+				
 				<div class="row content">
 					<%
 					int t = td.get(i).getDuration();
@@ -333,12 +338,14 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 						<%=td.get(i).getId()%>
 						)
 					</p>
+					
 					<p class="col-sm-6 ">
 
 						-----
 						<%=time%>
 						-----
 					</p>
+					
 				</div>
 
 				<div class="row content">
@@ -418,7 +425,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 							type="hidden" name="tno" id="tno" value=""> <input
 							type="hidden" name="c" id="c" value="">
 						<div class="modal-footer">
-							<button type="submit" class="btn btn-primary" >Submit</button>
+							<button type="submit" class="btn btn-primary">Submit</button>
 						</div>
 					</form>
 				</div>
@@ -430,104 +437,6 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 
 
 	<!-- form-control, form-label, form-select, input-group, input-group-text -->
-
-
-	<!-- profile -->
-	<!-- <div class="modal fade" id="profile-modal" tabindex="-1"
-		aria-labelledby="modal-title" aria-hidden="true">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h5 class="modal-title" id="modal-title">Add passengers</h5>
-					<button type="button" class="btn-close" data-bs-dismiss="modal"
-						aria-label="Close"></button>
-				</div>
-				<div class="modal-body">
-					<div class="popup">
-						<div class="card">
-							<img src="https://bootdey.com/img/Content/avatar/avatar1.png"
-								alt="..." />
-							<h1>Aman Singh</h1>
-							<p>ID:101</p>
-							<p>Email:aman@gmail.com</p>
-							<p>Phone:1234567890</p>
-						</div>
-						<button type="button" class="hide" onclick="trainC()">Close</button>
-					</div>
-				</div>
-
-			</div>
-		</div>
-	</div> -->
-
-	<%-- <section class="bg-light">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12 mb-4 mb-sm-5">
-					<div class="card card-style1 border-0">
-						<div class="card-body p-1-9 p-sm-2-3 p-md-6 p-lg-7">
-							<div class="row align-items-center">
-								<div class="col-lg-6 mb-4 mb-lg-0">
-									<%
-									if (new String((String) session.getAttribute("gender")).matches("F")) {
-										System.out.println("Female");
-									%>
-
-									<img src="https://bootdey.com/img/Content/avatar/avatar3.png"
-										alt="..." />
-									<%
-									} else if (new String((String) session.getAttribute("gender")).matches("M")) {
-									%>
-									<img src="https://bootdey.com/img/Content/avatar/avatar1.png"
-										alt="..." />
-									<%
-									} else {
-									System.out.println("other" + session.getAttribute("gender"));
-									%>
-									<img src="https://bootdey.com/img/Content/avatar/avatar7.png"
-										alt="..." />
-									<%
-									}
-									%>
-								</div>
-								<div class="col-lg-6 px-xl-10">
-									<div
-										class="bg-secondary d-lg-inline-block py-1-9 px-1-9 px-sm-6 mb-1-9 rounded"
-										style="width: 100%;">
-										<h3 class="h2 text-white mb-0 d-flex justify-content-center"><%=session.getAttribute("name")%>
-										</h3>
-										<!-- <span class="text-primary">Coach</span> -->
-									</div>
-									<ul class="list-unstyled mb-1-9">
-										<!--  <li class="mb-2 mb-xl-3 display-28">
-                                        <span class="display-26 text-secondary me-2 font-weight-600">Position:</span>
-                                        Coach
-                                    </li> -->
-										<li class="mb-2 mb-xl-3 display-28"><span
-											class="display-26 text-secondary me-2 font-weight-600">Full
-												Name:</span> <%=session.getAttribute("name")%> <%=session.getAttribute("lname")%>
-										</li>
-										<li class="mb-2 mb-xl-3 display-28"><span
-											class="display-26 text-secondary me-2 font-weight-600">Id:</span>
-											<%=session.getAttribute("id")%></li>
-										<li class="mb-2 mb-xl-3 display-28"><span
-											class="display-26 text-secondary me-2 font-weight-600">Email:</span>
-											<%=session.getAttribute("email")%></li>
-
-										<li class="display-28"><span
-											class="display-26 text-secondary me-2 font-weight-600">Phone:</span>
-											<%=session.getAttribute("mobile")%></li>
-									</ul>
-									<button class="btn btn-primary" routerLink="/dashboard">
-										go back</button>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</section> --%>
 
 	<!-- profile  -->
 	<%
@@ -616,20 +525,6 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
         new bootstrap.Tooltip(t);
       });
       
-      function increaseValue() {
-    	  var value = parseInt(document.getElementById('number').value, 10);
-    	  value = isNaN(value) ? 0 : value;
-    	  value++;
-    	  document.getElementById('number').value = value;
-    	}
-
-    	function decreaseValue() {
-    	  var value = parseInt(document.getElementById('number').value, 10);
-    	  value = isNaN(value) ? 0 : value;
-    	  value < 1 ? value = 1 : '';
-    	  value--;
-    	  document.getElementById('number').value = value;
-    	}
     	//
     	function logout(){
     	        document.location.href='logout';
@@ -648,8 +543,9 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
     		console.log(dest);
     		//set src val to dest and vice versa
     	}
-    	//
+    	// ========= to assign buttons to ????????????
     	
+    			//class name for every book button
         var num = document.getElementsByClassName("bn");
     	var selectedId;
     	var tno;
@@ -657,21 +553,22 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 		for(var i=0;i<num.length;i++){
 			num[i].addEventListener('click',(b)=>{ 
 				
-				//get id of the selected button
+				//get id of the selected button 0,1,2...
 				selectedId=b.target.id;
-				//get id of the gender dropdown
+				//create id of the gender dropdown c0,c1,c2
 				classId="c"+selectedId;
 				
 				//once you have gender dropdown id => then get value for that genderdropdown
 				var value = document.getElementById(classId).value;
 				//ac or sleeper => this value needs to be passed to modal
 				console.log(value);
-				//so train number is assigned to button name
+				// train number is assigned to button name so that we can transfer it to servlet 103,...
 				tno=b.target.name;
-				//103
+				
 				console.log(tno);
 				//c+0 for 1st button ...
 				console.log(classId);
+				//assigning the params to be passed to servlet upon submit via the hidden input fields
 				var inputF = document.getElementById("tid");
 	            inputF.setAttribute('value', selectedId);
 	            

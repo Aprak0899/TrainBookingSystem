@@ -33,7 +33,9 @@
 
 </head>
 <body>
+
 <input type="hidden" id="status" value="<%= request.getAttribute("status")%>">
+
 <div id="landing">
         <!-- navbar -->
         <nav
@@ -72,13 +74,17 @@
 
 					<div class="signin-form">
 						<h2 class="form-title">Sign In</h2>
+						
+						
 						<form method="post" action="login" class="register-form" id="login-form">
+						
 							<div class="form-group">
 								<label for="username"><i
 									class="zmdi zmdi-account material-icons-name"></i></label> <input
 									type="text" name="username" id="username"
 									placeholder="Your Name" required="required"/>
 							</div>
+							
 							<div class="form-group">
 								<label for="password"><i class="zmdi zmdi-lock"></i></label> <input
 									type="password" name="password" id="password"
@@ -90,6 +96,7 @@
 									class="form-submit" value="Log in" />
 							</div>
 						</form>
+						
 					</div>
 				</div>
 			</div>
