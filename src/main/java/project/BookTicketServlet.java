@@ -15,6 +15,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import com.mysql.cj.xdevapi.JsonArray;
+
 /**
  * Servlet implementation class BookTicketServlet
  */
@@ -26,9 +31,9 @@ public class BookTicketServlet extends HttpServlet {
 	private String jdbcPassword = "root";
 	
     private int ipno;
-    private int itno;
-    private int pnr;
-    private String seatClass;
+    private static int itno;
+    private static int pnr;
+    private static String seatClass;
     private int Availability_of_seats;
     private int General_seats;
     private int AC_seats;
@@ -36,27 +41,31 @@ public class BookTicketServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		System.out.println("inside get");
 		String tid = req.getParameter("tid");
 		String tno = req.getParameter("tno");
-		String pno = req.getParameter("pno");
 		String seatType = req.getParameter("c");
 		
-		System.out.println(" get seatType = "+seatType);
 		
+		
+		System.out.println(" get seatType = "+seatType);
+		//re assign seat type according to database
 		if(seatType.matches("AC")) {
 			this.seatClass="A";
 		}else {
 			this.seatClass="G";
 		}
-		this.ipno = Integer.valueOf(pno);
+		//train no. in int
 		this.itno = Integer.valueOf(tno);
-		System.out.println("tid = "+tid+" tno = "+tno+" pno = "+pno);
+
+		
+		System.out.println("tid = "+tid+" tno = "+tno);
 		RequestDispatcher dispatcher = null;
-		req.setAttribute("tid", Integer.valueOf(tid));
-		req.setAttribute("tno", Integer.valueOf(tno));
-		req.setAttribute("pno", Integer.valueOf(pno));
+//		req.setAttribute("tid", Integer.valueOf(tid));
+//		req.setAttribute("tno", Integer.valueOf(tno));
 		dispatcher=req.getRequestDispatcher("AddPasssenger.jsp");
 		dispatcher.forward(req, resp);
+		//------------------------------------
 	}
 
 	//-------------connection------------------
@@ -108,7 +117,10 @@ public class BookTicketServlet extends HttpServlet {
 			try (Connection connection = getConnection();
 					PreparedStatement statement = connection.prepareStatement("update train set Availability_of_seats = ?, General_seats = ?, AC_seats= ? where Train_no = ?;");) 
 			{
-				//System.out.println("updated USer:"+statement);
+				System.out.println("updated USer:"+itno);
+				
+				
+				
 				
 				statement.setInt(1, this.Availability_of_seats-this.ipno);
 				if(seatType) {
@@ -174,6 +186,26 @@ public class BookTicketServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		RequestDispatcher dispatcher = null;
+		HttpSession session = request.getSession();
+		
+		//============================================= js form
+		//this will give you name and gender
+		String arr= request.getParameter("array");
+		System.out.println("from post" + arr);
+		JSONObject jsonObj = new JSONObject(arr);
+		
+		//Fetching nested Json using JSONArray
+        JSONArray arrObj = jsonObj.getJSONArray("data");
+        System.out.println("from post" + arrObj.length());
+		this.ipno=arrObj.length();
+		//===========================================
+//		String pcount=request.getParameter("flag");
+//		//this will come from addp.jsp
+//		String pno = request.getParameter("pno");
+		
+		
+		
 		// TODO Auto-generated method stub
 		try {
 			getLastPNR();
@@ -184,28 +216,30 @@ public class BookTicketServlet extends HttpServlet {
 			e1.printStackTrace();
 		}
 		System.out.println("avail seats = "+this.Availability_of_seats);
-		RequestDispatcher dispatcher = null;
-	
-		HttpSession session = request.getSession();
+		
 		int id = (int)session.getAttribute("id"); 
+		
+		
+		
 		ArrayList<Ticket> pl = new ArrayList<>();
-		for (int i=0;i<ipno;i++) {
-			String nameId ="n"+i;
-			String gId ="g"+i;
+		for (int i=0;i<arrObj.length();i++) {
+			
 //			Passenger p = new Passenger();
 //			p.setName(request.getParameter(nameId));
 //			p.setGender(request.getParameter(gId));
 //			pl.add(p);
 			
 			Ticket t = new Ticket();
-			t.setp_Name(request.getParameter(nameId));
-			t.setp_Gender(request.getParameter(gId));
+		
+			t.setp_Name(arrObj .getJSONObject(i).getString("name"));
+			t.setp_Gender(arrObj .getJSONObject(i).getString("gender"));
 			t.setp_ResStatus(1);
-			t.setpSeatType(seatClass);
+			t.setpSeatType(this.seatClass);
 			t.setu_Id(id);
 			t.setId(itno);
 			//add pnr
 			t.setp_PNR(++this.pnr);
+			System.out.println(t.getpName()+" "+t.getpGender()+" "+t.getpnr()+" "+t.getStatus()+" "+t.getpSeatType());
 			pl.add(t);
 			
 			
@@ -213,9 +247,11 @@ public class BookTicketServlet extends HttpServlet {
 		
 		try {
 			boolean b= updateTrain();
+			System.out.println("updateTrain = "+b);
 			for(int i=0;i<pl.size();i++) {
 				
 				boolean ba=BookTicket(pl.get(i));
+				System.out.println("update = "+ba);
 
 			}
 			request.setAttribute("status","success");
@@ -224,8 +260,12 @@ public class BookTicketServlet extends HttpServlet {
 
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
-			request.setAttribute("status","failed");
+			
 			e1.printStackTrace();
+			request.setAttribute("status","failed");
+			dispatcher=request.getRequestDispatcher("booking.jsp");
+			dispatcher.forward(request, response);
+			
 		}
 		
 		

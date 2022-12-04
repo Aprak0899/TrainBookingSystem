@@ -417,13 +417,8 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 						<input type="hidden" name="tid" id="tid" value=""> <input
 							type="hidden" name="tno" id="tno" value=""> <input
 							type="hidden" name="c" id="c" value="">
-						<div class="value-button" id="decrease" onclick="decreaseValue()"
-							value="Decrease Value">-</div>
-						<input type="number" name="pno" id="number" value="0" />
-						<div class="value-button" id="increase" onclick="increaseValue()"
-							value="Increase Value">+</div>
 						<div class="modal-footer">
-							<button type="submit" class="btn btn-primary">Submit</button>
+							<button type="submit" class="btn btn-primary" >Submit</button>
 						</div>
 					</form>
 				</div>
