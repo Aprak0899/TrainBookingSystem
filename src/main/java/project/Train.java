@@ -12,9 +12,18 @@ public class Train{
 	private int tACSeat;
 	private int tNACSeat;
 	
+	private int fareGeneral;
+	private int fareAC;
+	
 	//setter
 	public void setId(int Id) {
 		this.tId=Id;
+	}
+	public void setFareGeneral(int fare) {
+		this.fareGeneral=fare;
+	}
+	public void setFareAC(int fare) {
+		this.fareAC=fare;
 	}
 	public void setName(String name) {
 		this.tName=name;
@@ -52,6 +61,12 @@ public class Train{
 	public int getId() {
 		return tId;
 	}
+	public int getFareGenral() {
+		return this.fareGeneral;
+	}
+	public int getFareAC() {
+		return this.fareAC;
+	}
 	public int getDuration() {
 		return tDuration;
 	}
@@ -64,6 +79,7 @@ public class Train{
 	public String getDeparture() {
 		return tDeparture;
 	}
+	
 	
 	// Usage of comparator
     public static Comparator<Train> DurComparator = new Comparator<Train>() {

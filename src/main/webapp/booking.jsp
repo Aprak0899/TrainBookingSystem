@@ -244,7 +244,6 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 
 								<div class=" col-sm-2 ">
 									<select id="class" name="class">
-										<option value="label">Class</option>
 										<option value="AC">AC</option>
 										<option value="Sleeper">Sleeper</option>
 									</select>
@@ -490,6 +489,10 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 		if(status=="success"){
 			console.log("success");
 		    swal("congrats","Ticket Booked SuccessFully","success");
+		}
+		if(status=="seatFull"){
+			console.log("success");
+		    swal("Sorry","Sorry, Insufficient seats to accomodate the passengers.","error");
 		}
 		if(status=="failed"){
 			console.log("fail");

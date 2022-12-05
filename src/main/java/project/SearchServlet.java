@@ -165,6 +165,8 @@ public class SearchServlet extends HttpServlet {
 						t.setAvailSeat(rs.getInt(6));
 						t.setNACSeat(rs.getInt(7));
 						t.setACSeat(rs.getInt(8));
+						t.setFareGeneral(rs.getInt(9));
+						t.setFareAC(rs.getInt(10));
 						trainDetails.add(t);
 					}
 

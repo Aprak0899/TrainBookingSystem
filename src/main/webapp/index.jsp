@@ -19,6 +19,7 @@
     </style>
   </head>
   <body>
+  <input type="hidden" id="status" value="<%= request.getAttribute("status") %>">
   	<div id="landing">
         <!-- navbar -->
         <nav
@@ -304,81 +305,22 @@
   
       <!-- contact form -->
       <!-- form-control, form-label, form-select, input-group, input-group-text -->
-      
-      <!-- get updates / modal trigger -->
-      <section class="bg-light">
-        <div class="container">
-          <div class="text-center">
-            <h2>Thank You For Visiting Us</h2>
-            <p class="lead">Hope to See you Soon...</p>
-          </div>
-          <div class="row justify-content-center">
-            <div class="col-md-8 text-center">
-              <!-- <p class="text-muted my-4">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero
-                exercitationem voluptatibus porro, hic asperiores fuga illo
-                voluptates obcaecati deleniti veritatis sunt saepe quasi deserunt
-                ex ipsum. Est possimus, aspernatur, vitae eligendi rem odit
-                quaerat, ipsum pariatur ratione maxime delectus fuga minus
-                accusamus dolores iusto maiores accusantium cumque magnam placeat
-                quia!
-              </p>
-              <button
-                class="btn btn-primary"
-                data-bs-toggle="modal"
-                data-bs-target="#reg-modal"
-              >
-                Register for Updates
-              </button> -->
-            </div>
-          </div>
-        </div>
-      </section>
+   
   
-      <!-- modal itself -->
-      <div
-        class="modal fade"
-        id="reg-modal"
-        tabindex="-1"
-        aria-labelledby="modal-title"
-        aria-hidden="true"
-      >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="modal-title">Get the Latest Updates</h5>
-              <button
-                type="button"
-                class="btn-close"
-                data-bs-dismiss="modal"
-                aria-label="Close"
-              ></button>
-            </div>
-            <div class="modal-body">
-              <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quis,
-                exercitationem laboriosam nihil minus voluptatibus harum aliquam
-                consequatur pariatur inventore dignissimos illum excepturi ratione
-                ipsum sit iusto alias eligendi fugit laborum?
-              </p>
-              <label for="modal-email" class="form-label"
-                >Your email address:</label
-              >
-              <input
-                type="text"
-                class="form-control"
-                id="modal-email"
-                placeholder="e.g. aditya@example.com"
-              />
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-primary">Submit</button>
-            </div>
-          </div>
-        </div>
-      </div>
       
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+     
+     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+	<script>
+		var status = document.getElementById("status").value;
+		if(status=="logout"){
+			console.log("success");
+		    swal("congrats","You have successfully logged out","success");
+		}
+		
+		
+	</script>
+     
      
       <script>
       //date
