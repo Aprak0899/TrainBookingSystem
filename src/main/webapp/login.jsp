@@ -109,10 +109,16 @@
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 	<script>
 		var status = document.getElementById("status").value;
+		if(status=="registered"){
+			console.log("success");
+		    swal("congrats","Registered Successfully","success");
+		}
 		if(status=="failed"){
 			console.log("fail");
 		    swal("Sorry","Wrong userName or password","error");
 		}
+		
+		
 		else if(status=="invalidEmail"){
 			console.log("fail");
 		    swal("Sorry","Please Enter UserName","error");

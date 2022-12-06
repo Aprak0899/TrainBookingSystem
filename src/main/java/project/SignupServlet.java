@@ -85,7 +85,7 @@ public class SignupServlet extends HttpServlet {
 		// -------------------------------------database code-----------------------------------
 
 		Connection con = null;
-		dispatcher = request.getRequestDispatcher("registration.jsp");
+		
 		if (flag) {
 			try {
 				Class.forName("com.mysql.cj.jdbc.Driver");
@@ -103,10 +103,13 @@ public class SignupServlet extends HttpServlet {
 				int rowCount = pst.executeUpdate();
 
 				if (rowCount > 0) {
-					request.setAttribute("status", "success");
+					request.setAttribute("status", "registered");
+					dispatcher = request.getRequestDispatcher("login.jsp");
 				} else {
 					request.setAttribute("status", "failed");
+					dispatcher = request.getRequestDispatcher("registration.jsp");
 				}
+				
 				dispatcher.forward(request, response);
 			} catch (Exception e) {
 				request.setAttribute("status", "duplicate");

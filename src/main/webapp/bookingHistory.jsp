@@ -14,14 +14,17 @@
     <title>BookingHistory</title>
 	<link rel="stylesheet" href="/css/main.min.css"  />
 	<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-     
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js"></script>
+	<link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet"/>
+
     <style>
       section {
         padding: 60px 0;
       }
       #landing {
         background-image: url("images/home.jpg");
-        height: 100vh;
+        height: 115vh;
       }
     </style>
 <link rel="stylesheet"
@@ -52,66 +55,76 @@
       
 	<br>
 
-	<div class="row">
-	
-
-		<div class="container" style="background-color: white; opacity: 0.6">
-			<h3 class="text-center">Booking History</h3>
-			<hr>
-			
-			<br>
-			<table class="table table-bordered">
-				<thead>
-					<tr>
-						<th>Name</th>
-						<th>Gender</th>
-						<th>Train no.</th>
-						<th>Status</th>
-						<th>Actions</th>
-					</tr>
-				</thead>
-				<tbody>
-				
-				<% 
-				if(tl!=null && tl.size()!=0){
-				System.out.println("from jsp = "+tl.size()); 
-				
-				for(int i=0;i<tl.size();i++){
-					
-				%>
-						<tr>
-							<td><%= tl.get(i).getpName() %> </td>
-							<td><%= tl.get(i).getpGender() %> </td>
-							<td><%= tl.get(i).getpnr() %>  </td>
-							<td><%= tl.get(i).getStatus() %></td>
-							
-							<td>
-								&nbsp;&nbsp;&nbsp;&nbsp; 
-								<% if(tl.get(i).getStatus()==1) {%>
-								<form method="get" action="BookingHistory?id=">
-				              		<div class="form-group form-button">
-				              		<input type="hidden" name="id" id="signin" class="form-submit" value="<%= i %>" />
-									<input type="submit" name="tag" id="signin" class="form-submit btn btn-danger" value="cancel ticket" />
-									</div>
-              					</form>
-								
-								<%}else if(tl.get(i).getStatus()==0){
-									%>
-									Canceled
-									<%}else{%>
-									Expired
-									<% }%>
-							
-							</td>
-						</tr>
-						
-				<%
-				}} %>
-		
-				</tbody>
-
-			</table>
+		<div class="modal-dialog modal-xl modal-dialog-scrollable style="background-color: white; opacity: 0.6"">
+		  <div class="modal-content">
+			<div class="modal-body">
+				  <div class="row">
+			  
+		  
+	  
+			  <div class="scroll-data" style="background-color: white; opacity: 0.6">
+				  <h3 cl>Booking History</h3>
+				  <hr>
+				  
+				  <br>
+				  <table class="table table-bordered">
+					  <thead>
+						  <tr>
+							  <th>Name</th>
+							  <th>Gender</th>
+							  <th>PNR</th>
+							  <th>Train name</th>
+							  <th>Actions</th>
+						  </tr>
+					  </thead>
+					  <tbody>
+					  
+					  <% 
+					  if(tl!=null && tl.size()!=0){
+					  System.out.println("from jsp = "+tl.size()); 
+					  
+					  for(int i=0;i<tl.size();i++){
+						  
+					  %>
+							  <tr>
+								  <td><%= tl.get(i).getpName() %> </td>
+								  <td><%= tl.get(i).getpGender() %> </td>
+								  <td><%= tl.get(i).getpnr() %>  </td>
+								  <td><%= tl.get(i).getName() %></td>
+								  
+								  <td>
+									  &nbsp;&nbsp;&nbsp;&nbsp; 
+									  <% if(tl.get(i).getStatus()==1) {%>
+									  <form method="get" action="BookingHistory?id=">
+											<div class="form-group form-button">
+											<input type="hidden" name="id" id="signin" class="form-submit" value="<%= i %>" />
+										  <input type="submit" name="tag" id="signin" class="form-submit btn btn-danger" value="cancel ticket" />
+										  </div>
+										</form>
+									  
+									  <%}else if(tl.get(i).getStatus()==0){
+										  %>
+										  Canceled
+										  <%}else{%>
+										  Expired
+										  <% }%>
+								  
+								  </td>
+							  </tr>
+							  
+					  <%
+					  }} %>
+			  
+					  </tbody>
+	  
+				  </table>
+				 
+			  </div>
+		  </div>
+			</div>	
+		  
 		</div>
+	  </div>
 	</div>
 </body>
 </html>

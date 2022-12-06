@@ -23,6 +23,15 @@ public class SearchServlet extends HttpServlet {
 	private static String src;
 	private static String dest;
 	private static String travelClass;
+	
+	public Train getTrainInfo(int tno){
+		for(int i=0;i<this.trainDetails.size();i++) {
+			if(this.trainDetails.get(i).getId()==tno) {
+				return this.trainDetails.get(i);
+			}
+		}
+		return null;
+	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse

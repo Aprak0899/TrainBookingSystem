@@ -11,7 +11,7 @@ ArrayList<Train> td = (ArrayList<Train>) request.getAttribute("trainData");
 <html>
 <head>
 <meta charset="ISO-8859-1">
-<title>Insert title here</title>
+<title>booking page</title>
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -30,7 +30,7 @@ section {
 
 #landing {
 	background-image: url("images/home.jpg");
-	height: 100vh;
+	height: 200vh;
 }
 
 #f1 {
@@ -200,9 +200,9 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 				<div class="tab-content" id="pills-tabContent">
 					<div class="tab-pane fade show active" id="pills-home"
 						role="tabpanel" aria-labelledby="pills-home-tab">
-						
-						
-						
+
+
+
 						<form method="post" action="search">
 							<div class="row content justify-content-center">
 								<div class="row content justify-content-center col-sm-6 ">
@@ -321,7 +321,7 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 				if (td != null) {
 					for (int i = 0; i < td.size(); i++) {
 				%>
-				
+
 				<div class="row content">
 					<%
 					int t = td.get(i).getDuration();
@@ -337,14 +337,14 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 						<%=td.get(i).getId()%>
 						)
 					</p>
-					
+
 					<p class="col-sm-6 ">
 
 						-----
 						<%=time%>
 						-----
 					</p>
-					
+
 				</div>
 
 				<div class="row content">
@@ -364,15 +364,16 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 								<%
 								if (td.get(i).getACSeat() > 0) {
 								%>
-								<option value="AC">AC
+								<option value="AC" name="<%=td.get(i).getFareAC() %>">AC
 									<%=td.get(i).getACSeat()%></option>
+									
 								<%
 								}
 								%>
 								<%
 								if (td.get(i).getNACSeat() > 0) {
 								%>
-								<option value="Sleeper">Sleeper
+								<option value="Sleeper" name="<%=td.get(i).getFareGenral() %>">Sleeper
 									<%=td.get(i).getNACSeat()%></option>
 								<%
 								}
@@ -417,11 +418,15 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 						aria-label="Close"></button>
 				</div>
 				<div class="modal-body">
-					<label for="modal-email" class="form-label">Do you wish to book ticket ?</label>
+					<label for="modal-email" class="form-label">Do you wish to
+						book ticket ?</label>
 					<form id="f1" method="get" action="bookTicket">
+
 						<input type="hidden" name="tid" id="tid" value=""> <input
 							type="hidden" name="tno" id="tno" value=""> <input
-							type="hidden" name="c" id="c" value="">
+							type="hidden" name="c" id="c" value=""> <input
+							type="hidden" name="fare" id="seatfare" value=""> 
+
 						<div class="modal-footer">
 							<button type="submit" class="btn btn-primary">Submit</button>
 						</div>
@@ -506,7 +511,9 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 		</script>
 
 	<script>
-	//date
+	
+	
+	//================= ****date**** =============
 
     const date = new Date();
 
@@ -525,8 +532,9 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
     d.setAttribute("value", currentDate);
     d.setAttribute("max", ld);
 
-    //
-	//alter
+    
+	//====================== ****swap src to dest and vice versa**** ===================
+		
 	function rev() {
         var src = document.getElementById("src");
         var dest = document.getElementById("dest");
@@ -537,34 +545,27 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
         src.value = destda;
         dest.value = srcda;
       }
-    //for profile
+	
+    //================ **** for profile **** ====================
+    	
     function trainB(){
         document.getElementById("user-profile").style.display = "flex";
       }
     //
-      const tooltips = document.querySelectorAll(".tt");
-      tooltips.forEach((t) => {
-        new bootstrap.Tooltip(t);
-      });
+     const tooltips = document.querySelectorAll(".tt");
+     tooltips.forEach((t) => {
+       new bootstrap.Tooltip(t);
+     });
       
-    	//
-    	function logout(){
-    	        document.location.href='logout';
+   	//
+   	function logout(){
+   	        document.location.href='logout';
 
-    	}
-    	function login(){
-    		document.location.href = "login.jsp";
-    	}
-    	//
-    	 function alterValue(){
-    		//get val from src
-    		var src= document.getElementById("src").value;
-    		console.log(src);
-    		//get val from dest
-    		var dest= document.getElementById("dest").value;
-    		console.log(dest);
-    		//set src val to dest and vice versa
-    	}
+   	}
+   	function login(){
+   		document.location.href = "login.jsp";
+   	}
+   	
     	// ========= to assign buttons to ????????????
     	
     			//class name for every book button
@@ -583,13 +584,13 @@ input[type=number]::-webkit-inner-spin-button, input[type=number]::-webkit-outer
 				//once you have gender dropdown id => then get value for that genderdropdown
 				var value = document.getElementById(classId).value;
 				//ac or sleeper => this value needs to be passed to modal
-				console.log(value);
+				console.log("cid .val = ",value);
 				// train number is assigned to button name so that we can transfer it to servlet 103,...
 				tno=b.target.name;
 				
 				console.log(tno);
 				//c+0 for 1st button ...
-				console.log(classId);
+				console.log("cid= ",classId);
 				//assigning the params to be passed to servlet upon submit via the hidden input fields
 				var inputF = document.getElementById("tid");
 	            inputF.setAttribute('value', selectedId);

@@ -24,6 +24,8 @@ import com.mysql.cj.xdevapi.JsonArray;
  * Servlet implementation class BookTicketServlet
  */
 public class BookTicketServlet extends HttpServlet {
+	
+	
 	private static final long serialVersionUID = 1L;
 
 	private String jdbcURL = "jdbc:mysql://localhost:3306/trainbookingsystem?allowPublicKeyRetrieval=true&useSSL=false";
@@ -41,6 +43,7 @@ public class BookTicketServlet extends HttpServlet {
 	private int Availability_of_seats;
 	private int General_seats;
 	private int AC_seats;
+	private int Fare;
 
 	// ================(1) do get () triggered when book now is pressed from
 	// booking. jsp ========================
@@ -51,16 +54,26 @@ public class BookTicketServlet extends HttpServlet {
 		String tid = req.getParameter("tid");
 		String tno = req.getParameter("tno");
 		String seatType = req.getParameter("c");
-		// re assign seat type according to database
+		System.out.println("tid = "+tid+"tno ="+tno+" st = "+seatType);
+		this.itno = Integer.valueOf(tno);
+		
+		SearchServlet s= new SearchServlet();
+		Train trainInfo = s.getTrainInfo(this.itno);
+		
 		if (seatType.matches("AC")) {
 			this.seatClass = "A";
+			this.Fare=trainInfo.getFareAC();
 		} else {
 			this.seatClass = "G";
+			this.Fare=trainInfo.getNACSeat();
 		}
+		System.out.println("fare"+this.Fare);
+		
 		// train no. in int
-		this.itno = Integer.valueOf(tno);
-
+		//this.itno = Integer.valueOf(tno);
+		
 		RequestDispatcher dispatcher = null;
+		req.setAttribute("fare", this.Fare);
 		dispatcher = req.getRequestDispatcher("AddPasssenger.jsp");
 		dispatcher.forward(req, resp);
 

@@ -92,13 +92,16 @@
 	<form method="post" class="form-style-9" id="f" style="opacity: 0.8">
       <button
         type="button"
-        class="btn btn-primary bn col-sm-6"
+        class="btn btn-primary bn col-sm-6 field-split align-left"
         id="nop"
         name="nop"
         onclick="add()"
       >
         add passengers
       </button>
+        <p class="display-4 my-4 text-primary fw-bold" >
+        <span>&#8377 </span> <span id="totalCost"><%=request.getAttribute("fare")%></span>
+        </p>
       <hr />
       
 
@@ -164,11 +167,33 @@
     </form>
 
 	<script>
+	var totalCost=<%=request.getAttribute("fare")%>;
+	var costPerHead=<%=request.getAttribute("fare")%>;
+	
+	console.log("tc= ",totalCost );
+	function addFare(){
+		totalCost+=costPerHead;
+		 let n = document.getElementById("totalCost");
+	     n.innerHTML=totalCost;
+		console.log("tc= ",totalCost );
+	}
+	function delFare(){
+		if(totalCost!=<%=request.getAttribute("fare")%>){
+			totalCost-=costPerHead;
+			 let n = document.getElementById("totalCost");
+		     n.innerHTML=totalCost;
+		}
+		
+		console.log("tc= ",totalCost );
+	}
+	
 	 var base = "cl";
      var delBtn = "btn";
      var i = 0;
 
      function add() {
+    	 
+    	 addFare();
        // i starts with 1
        console.log("add");
        const node = document.getElementById("cl0");
@@ -206,6 +231,8 @@
 		}
 
 		function del(id) {
+			
+			delFare();
 			console.log("array", passInfo);
 			console.log("clicked", id);
 			let indexToDelete = id.charAt(id.length - 1);

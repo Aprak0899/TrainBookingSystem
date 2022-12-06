@@ -19,12 +19,14 @@ public class Train{
 	public void setId(int Id) {
 		this.tId=Id;
 	}
+	
 	public void setFareGeneral(int fare) {
 		this.fareGeneral=fare;
 	}
 	public void setFareAC(int fare) {
 		this.fareAC=fare;
 	}
+	
 	public void setName(String name) {
 		this.tName=name;
 	}
@@ -61,12 +63,14 @@ public class Train{
 	public int getId() {
 		return tId;
 	}
+	
 	public int getFareGenral() {
 		return this.fareGeneral;
 	}
 	public int getFareAC() {
 		return this.fareAC;
 	}
+	
 	public int getDuration() {
 		return tDuration;
 	}
