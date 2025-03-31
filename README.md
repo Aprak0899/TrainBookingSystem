@@ -1,24 +1,41 @@
-# TrainBookingSystem
+# 🚆 Train Booking System
 
-<p>Its a website where the user can book a train based on their journey.</p>
-<p>Add passengers and check pnr and cancel ticket as well.</p>
+## 📌 Project Overview  
+The **Train Booking System** is a user-friendly platform designed for seamless train reservations. It allows users to **plan journeys, check PNR status, book tickets, manage passenger details, and cancel tickets** with minimal effort. The system ensures smooth navigation from search to booking confirmation, enhancing user experience.
 
-## Technology Used in this are:
+## 🔑 Key Features  
+- 🛤️ **User-Friendly Interface** – No login required for journey planning & PNR status checking.  
+- 🚆 **Comprehensive Booking System** – View, sort, and filter trains based on multiple criteria.  
+- 🔍 **Advanced Search** – Modify search parameters easily on the booking page.  
+- ✅ **Seamless Registration & Login** – Users can register quickly and continue bookings.  
+- 📅 **Booking History & Ticket Management** – View booking history, cancel tickets, and track expiration.  
+- ⚖️ **Robust Database** – Structured tables for users, passengers, routes, and trains.  
+- 📲 **Technological Stack** – Built with **Java, JSP, Servlets, MySQL Workbench, JDBC, Bootstrap, HTML, CSS, and JavaScript**.
 
-<p>For backend we used Java, JSP, Servlet.</p>
-<p>For database we use MySQL Workbench for creating the database and JDBC for database
-connection. </p>
-<p>For frontend we used Bootstrap , HTML, CSS and JavaScript. </p>
+## 📊 Key Insights  
+- **📌 Journey Planning Made Easy:** Users can input travel details and check train availability effortlessly.  
+- **📈 Flexible Sorting & Search:** Trains can be sorted by arrival time, duration, or seat availability.  
+- **🔄 Seamless Booking Flow:** Smooth navigation ensures a hassle-free booking experience.  
+- **👤 User Profile Management:** Easy registration and profile handling for a personalized experience.  
+- **🎟️ Efficient Ticket Management:** Users can view, cancel, and track ticket expirations.  
+- **💻 Professional-Grade Tech Stack:** Java-based backend with a responsive Bootstrap frontend.  
+- **🚀 Future Enhancements Potential:** Scope for loyalty programs, discounts, and additional features.  
 
-## How to launch this?
-<ul>
-<li>
-Install eclipse IDE enterprise edittion </li>
-<li>Install MySQL workbench</li>
-<li>download the zip file of the project and open this with eclipse</li>
-<li>"Dump20221207" is the sql file which you have to import it on your mysql workbench</li>
-</ul>
-<hr>
+## 🛠️ Technology Stack  
+**Backend:** Java, JSP, Servlet  
+**Database:** MySQL Workbench (JDBC for connection)  
+**Frontend:** Bootstrap, HTML, CSS, JavaScript  
 
-## Please refer to the project report file to understand more on the functionality of the project and for images as well
- 
+## 🚀 How to Launch This Project  
+1. Install **Eclipse IDE (Enterprise Edition)**  
+2. Install **MySQL Workbench**  
+3. Download the project **ZIP file** and open it in Eclipse  
+4. Import `Dump20221207.sql` into **MySQL Workbench**  
+5. Run the project and start booking your journey!  
+
+📂 **For more details on functionality and images, refer to the project report file.**  
+
+---
+
+🔗 **Project Contributors:** *Aditya Prakash*  
+📅 **Last Updated:** *March 2025*  
