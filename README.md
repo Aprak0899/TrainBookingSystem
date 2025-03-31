@@ -33,8 +33,7 @@ The **Train Booking System** is a user-friendly platform designed for seamless t
 4. Import `Dump20221207.sql` into **MySQL Workbench**  
 5. Run the project and start booking your journey!  
 
-📂 **For more details on functionality and images, refer to the project report file.**  
-
+📂 **For more details on functionality and images, refer to the project report file below.**  (https://github.com/Aprak0899/TrainBookingSystem/blob/main/Project%20Report.pdf)
 ---
 
 🔗 **Project Contributors:** *Aditya Prakash*  
